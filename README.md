@@ -19,13 +19,13 @@ Growsseth Board is a 3D tabletop game inspired by the story of Cydonia's minecra
 
 | Name            | Role                | Profile Link                                       |
 |-----------------|---------------------|----------------------------------------------------|
-| Lucaslucky    | Project Owner      | |
-| NoelEm     | Fullstack Developer / Music composer   | [GitHub](https://github.com/Noel-Em)                  |
+| Lucaslucky    | Project Owner / Music Composer      | |
+| NoelEm     | Fullstack Developer / Music Composer   | [GitHub](https://github.com/Noel-Em)                  |
 | Zai (Uomo Protone)   | Fullstack Developer |         |
 | SiriosDev      | Frontend Developer      |  |
 | Rubens       | Frontend Developer      | |
 | Xertaw33     | Frontend Developer    | |
-| Hyzen       | Artist / Music composer | |
+| Hyzen       | Artist / Music Composer | |
 | SkennyArt      | Artist / Storyboard Artist    | |
 | Eribell      |  Artist  | |
 | Dead Nature      | Artist   | |
