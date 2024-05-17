@@ -30,6 +30,8 @@ func _ready() -> void:
 		for i in range(mapWidth):
 			for j in range(mapHeight):
 				var me = testingTile.instantiate()
+				add_child(me)
+				me.position = Vector3(i, 0, j)
 				print(me.position)
 	else:
 		print("Sono sad, ma gioca")
