@@ -31,6 +31,7 @@ func _ready() -> void:
 				var me = testingTile.instantiate()
 				add_child(me)
 				me.position = Vector3(i, 0, j)
+				#print(me.position)
 	else:
 		print("Sono sad, ma gioca")
 
