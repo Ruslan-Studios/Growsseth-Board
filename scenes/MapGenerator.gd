@@ -20,7 +20,6 @@ func seedToNumber(seed: String) -> int:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"../MyCam".current = true
 	var seed_int = seedToNumber(seed_)
 	var melmina_seed = seedToNumber("MelminaVerde")
 	if seed_int == melmina_seed:
@@ -32,7 +31,7 @@ func _ready() -> void:
 				var me = testingTile.instantiate()
 				add_child(me)
 				me.position = Vector3(i, 0, j)
-				print(me.position)
+				#print(me.position)
 	else:
 		print("Sono sad, ma gioca")
 
