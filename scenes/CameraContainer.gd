@@ -1,10 +1,8 @@
 extends Marker3D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 var dragging = false
 var sensitivity = 0.005
@@ -19,7 +17,6 @@ func _input(event):
 		target_rotation.y -= event.relative.x * sensitivity
 		target_rotation.x -= event.relative.y * sensitivity
 		target_rotation.x = clamp(target_rotation.x, 0, 0.7)
-		#print(str(rotation.x) + " - " + str(rotation.y))
 
 func _process(delta):
 	rotation.x = lerp(rotation.x, target_rotation.x, lerp_factor)

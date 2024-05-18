@@ -20,3 +20,7 @@ script = ExtResource("2_dp6oq")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 15, 15)
 current = true
 script = ExtResource("2_iew3l")
+
+[node name="RayCast3D" type="RayCast3D" parent="Marker3D"]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, 15, 15)
+target_position = Vector3(25, 0, 0)
