@@ -1,5 +1,9 @@
 extends Marker3D
 
+#	Title: MAP GENERATOR
+#	Description: Map generator based on a seed
+#   Made by: NoelEm
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
