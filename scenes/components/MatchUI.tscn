@@ -1,0 +1,443 @@
+[gd_scene load_steps=14 format=3 uid="uid://dl1mpxa72k0v4"]
+
+[ext_resource type="Texture2D" uid="uid://cnjseg17ann45" path="res://textures/UI/partita/invswitch_active.png" id="1_av58d"]
+[ext_resource type="Texture2D" uid="uid://3orfi84nfgr0" path="res://textures/UI/partita/plancia.png" id="1_b8niw"]
+[ext_resource type="Texture2D" uid="uid://c0y5dyc2081c5" path="res://textures/UI/partita/slot.png" id="2_f1rnu"]
+[ext_resource type="Texture2D" uid="uid://dd42anybk7ptm" path="res://textures/UI/partita/cards_icon.png" id="3_20fog"]
+[ext_resource type="Texture2D" uid="uid://dvecqgojkav3j" path="res://textures/UI/partita/item_icon.png" id="3_f3bhy"]
+[ext_resource type="Texture2D" uid="uid://c1x5lqr7dhdat" path="res://textures/UI/partita/termina_turno.png" id="3_kq70n"]
+[ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="4_vmsaa"]
+[ext_resource type="Script" path="res://scripts/DrawCard.gd" id="8_6oxbx"]
+[ext_resource type="Script" path="res://scripts/DrawCardBtn.gd" id="9_0anhd"]
+[ext_resource type="PackedScene" uid="uid://c4j1wvyppvji7" path="res://scenes/Card.tscn" id="10_w5csg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l2ucy"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="GDScript" id="GDScript_8ompe"]
+resource_name = "CardInv"
+script/source = "extends Panel
+
+const totCards: int = 0
+var cards: Array
+
+@export var card_offset_x: float = 20.0
+@export var rot_max: float = 10.0
+
+# Animazione
+var tween: Tween
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if cards.is_empty(): return
+
+
+func _on_child_entered_tree(node):
+	adjustCardsPosition()
+
+
+func _on_child_exiting_tree(node):
+	adjustCardsPosition()
+
+
+func adjustCardsPosition():
+	var i = 0
+	
+	if cards.is_empty(): return
+	
+	for card in cards:
+		if tween and tween.is_running():
+			tween.kill()
+		tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		
+		var final_pos: Vector2 = -(card.size / 2.0) - Vector2(card_offset_x * (cards.size() - 1 - i), 0.0)
+		var rot_radians: float = lerp_angle(-rot_max, rot_max, float(i) / float(cards.size() - 1))
+		
+		tween.parallel().tween_property(card, \"position\", final_pos, 0.3 + (i * 0.075))
+		tween.parallel().tween_property(card, \"rotation\", rot_radians, 0.3 + (i * 0.075))
+		
+		i += 1
+"
+
+[sub_resource type="GDScript" id="GDScript_l53ik"]
+script/source = "extends TextureButton
+
+func _on_pressed():
+	print(\"Skibidi sigma ohio rizz\")
+"
+
+[node name="MatchUi" type="CanvasLayer"]
+
+[node name="Plancia" type="TextureRect" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -305.485
+offset_right = 4078.0
+offset_bottom = 430.515
+grow_vertical = 0
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("1_b8niw")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -244.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_bottom = 45
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="InventoryContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="InvSwitch" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="ItemInvBtn" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/InvSwitch"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_av58d")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/InvSwitch/ItemInvBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_f3bhy")
+expand_mode = 1
+
+[node name="CardInvBtn" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/InvSwitch"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("1_av58d")
+expand_mode = 1
+
+[node name="CardsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/InvSwitch/CardInvBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_20fog")
+
+[node name="ItemInv" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InventoryContainer"]
+visible = false
+custom_minimum_size = Vector2(991, 200)
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="ItemInvTopRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvTopRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="ItemInvBotRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryContainer/ItemInv/ItemInvBotRow"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_f1rnu")
+expand_mode = 1
+
+[node name="CardInv" type="Panel" parent="MarginContainer/VBoxContainer/InventoryContainer"]
+material = SubResource("CanvasItemMaterial_l2ucy")
+custom_minimum_size = Vector2(991, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+script = SubResource("GDScript_8ompe")
+card_offset_x = 350.0
+
+[node name="TerminaTurnoBtnContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 40
+
+[node name="TerminaTurnoBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/InventoryContainer/TerminaTurnoBtnContainer"]
+custom_minimum_size = Vector2(340, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("3_kq70n")
+ignore_texture_size = true
+stretch_mode = 5
+script = SubResource("GDScript_l53ik")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/InventoryContainer/TerminaTurnoBtnContainer/TerminaTurnoBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -20.0
+offset_right = 143.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_vmsaa")
+theme_override_font_sizes/font_size = 36
+text = "Termina turno"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayersMarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 158.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayersMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[node name="ColorRect" type="ColorRect" parent="PlayersMarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 75)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="PlayersMarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(265, 75)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="PlayersMarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(265, 75)
+layout_mode = 2
+
+[node name="DecksMarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -395.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 65
+theme_override_constants/margin_bottom = 415
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DecksMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[node name="DrawCard" type="Button" parent="DecksMarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 75)
+layout_mode = 2
+script = ExtResource("8_6oxbx")
+card_scene = ExtResource("10_w5csg")
+
+[node name="Label" type="Label" parent="DecksMarginContainer/VBoxContainer/DrawCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Draw Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DrawFactionBtn" type="Button" parent="DecksMarginContainer/VBoxContainer" node_paths=PackedStringArray("from")]
+visible = false
+custom_minimum_size = Vector2(320, 75)
+layout_mode = 2
+script = ExtResource("9_0anhd")
+from = NodePath(".")
+card_scene = ExtResource("10_w5csg")
+card_offset_x = 150.0
+card_number = 5
+
+[node name="DrawToolBtn" type="Button" parent="DecksMarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DecksMarginContainer/VBoxContainer/DrawToolBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Draw Tool"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DrawNetherBtn" type="Button" parent="DecksMarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 75)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DecksMarginContainer/VBoxContainer/DrawNetherBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Draw Nether"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="child_entered_tree" from="MarginContainer/VBoxContainer/InventoryContainer/CardInv" to="MarginContainer/VBoxContainer/InventoryContainer/CardInv" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="MarginContainer/VBoxContainer/InventoryContainer/CardInv" to="MarginContainer/VBoxContainer/InventoryContainer/CardInv" method="_on_child_exiting_tree"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InventoryContainer/TerminaTurnoBtnContainer/TerminaTurnoBtn" to="MarginContainer/VBoxContainer/InventoryContainer/TerminaTurnoBtnContainer/TerminaTurnoBtn" method="_on_pressed"]
+[connection signal="pressed" from="DecksMarginContainer/VBoxContainer/DrawCard" to="DecksMarginContainer/VBoxContainer/DrawCard" method="_on_pressed"]
+[connection signal="pressed" from="DecksMarginContainer/VBoxContainer/DrawFactionBtn" to="DecksMarginContainer/VBoxContainer/DrawFactionBtn" method="_on_drawbtn_pressed"]
