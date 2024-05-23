@@ -11,19 +11,33 @@ config_version=5
 [application]
 
 config/name="Growsseth: The Board Game"
-run/main_scene="res://scenes/MatchUI.tscn"
+run/main_scene="res://scenes/components/MatchUI.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerPrefs="*res://addons/PlayerPrefs/PlayerPrefs.tscn"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 
 window/size/viewport_width=2160
 window/size/viewport_height=1440
+window/size/mode=2
 
 [dotnet]
 
 project/assembly_name="Prova"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/PlayerPrefs/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg")
+
+[filesystem]
+
+import/fbx/enabled=false
 
 [rendering]
 

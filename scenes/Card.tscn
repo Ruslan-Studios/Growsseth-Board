@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4j1wvyppvji7"]
+[gd_scene load_steps=9 format=3 uid="uid://c4j1wvyppvji7"]
 
 [ext_resource type="Shader" path="res://shader/card.gdshader" id="1_c2b6d"]
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_h5v18"]
 [ext_resource type="Texture2D" uid="uid://da2ystap0ko17" path="res://textures/carte/layout/layout_nether.png" id="1_vqlmf"]
 [ext_resource type="Texture2D" uid="uid://b8o2y4j7e21h5" path="res://textures/carte/artwork/ghast.png" id="2_k8750"]
-[ext_resource type="Texture2D" uid="uid://beinwy2dct4ft" path="res://textures/carte/ombra.png" id="3_cf05e"]
 [ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="3_vfvbf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kblwm"]
@@ -21,16 +20,17 @@ shader_parameter/inset = 0.0
 
 [node name="Card" type="Button"]
 anchors_preset = -1
-anchor_left = 0.148
-anchor_top = 0.096
-anchor_right = 0.406
-anchor_bottom = 0.639
-offset_left = 0.320007
-offset_top = -0.240005
-offset_right = 1.03998
-offset_bottom = -0.160095
+anchor_left = -0.053
+anchor_top = -0.104
+anchor_right = 0.05
+anchor_bottom = 0.113
+offset_left = -171.52
+offset_top = -226.24
+offset_right = 164.0
+offset_bottom = 243.28
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 pivot_offset = Vector2(286, 376)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -41,15 +41,11 @@ script = ExtResource("1_h5v18")
 material = SubResource("ShaderMaterial_kblwm")
 custom_minimum_size = Vector2(558, 781)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -279.0
-offset_top = -390.5
-offset_right = 279.0
-offset_bottom = 390.5
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.5
+offset_bottom = -0.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -71,14 +67,6 @@ offset_top = 390.0
 offset_right = 2282.0
 offset_bottom = 1916.0
 texture = ExtResource("2_k8750")
-
-[node name="Ombra" type="TextureRect" parent="SubViewportContainer/SubViewport/Layout"]
-visible = false
-layout_mode = 0
-offset_right = 11022.0
-offset_bottom = 15425.0
-scale = Vector2(0.225, 0.225)
-texture = ExtResource("3_cf05e")
 
 [node name="NameContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport"]
 offset_right = 297.0

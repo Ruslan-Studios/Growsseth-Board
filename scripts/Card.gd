@@ -27,8 +27,8 @@ var velocity: Vector2
 @onready var sub_viewport_container: SubViewportContainer = $SubViewportContainer
 @onready var layout_texture: TextureRect = $SubViewportContainer/SubViewport/Layout
 @onready var artwork_texture: TextureRect = $SubViewportContainer/SubViewport/Layout/Artwork
-@onready var shadow: TextureRect = $SubViewportContainer/SubViewport/Layout/Ombra
-#@onready var collision_shape = $DestroyArea/CollisionShape2D
+# @onready var shadow: TextureRect = $SubViewportContainer/SubViewport/Layout/Ombra
+# @onready var collision_shape = $DestroyArea/CollisionShape2D
 
 func _ready() -> void:
 	# Convert to radians because lerp_angle is using that
@@ -39,7 +39,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	rotate_velocity(delta)
 	follow_mouse(delta)
-	handle_shadow(delta)
+	# handle_shadow(delta)
 
 func rotate_velocity(delta: float) -> void:
 	if not following_mouse: return
@@ -60,13 +60,13 @@ func rotate_velocity(delta: float) -> void:
 	
 	rotation = displacement * displacementMultiplier
 
-func handle_shadow(delta: float) -> void:
-	# Y position is never changed.
-	# Only x changes depending on how far we are from the center of the screen
-	var center: Vector2 = get_viewport_rect().size / 2.0
-	var distance: float = global_position.x - center.x
-	
-	shadow.position.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance/(center.x)))
+#func handle_shadow(delta: float) -> void:
+	## Y position is never changed.
+	## Only x changes depending on how far we are from the center of the screen
+	#var center: Vector2 = get_viewport_rect().size / 2.0
+	#var distance: float = global_position.x - center.x
+	#
+	#shadow.position.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance/(center.x)))
 
 func follow_mouse(delta: float) -> void:
 	if not following_mouse: return
@@ -124,7 +124,7 @@ func _on_mouse_entered() -> void:
 	if tween_hover and tween_hover.is_running():
 		tween_hover.kill()
 	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween_hover.tween_property(self, "scale", Vector2(.7, .7), 0.5)
+	tween_hover.tween_property(self, "scale", Vector2(.5, .5), 0.5)
 
 func _on_mouse_exited() -> void:
 	
@@ -141,4 +141,4 @@ func _on_mouse_exited() -> void:
 	if tween_hover and tween_hover.is_running():
 		tween_hover.kill()
 	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween_hover.tween_property(self, "scale", Vector2(.6, .6), 0.55)
+	tween_hover.tween_property(self, "scale", Vector2(.55, .55), 0.55)
