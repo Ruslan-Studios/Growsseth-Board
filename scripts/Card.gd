@@ -34,6 +34,8 @@ func _ready() -> void:
 	# Convert to radians because lerp_angle is using that
 	angle_x_max = deg_to_rad(angle_x_max)
 	angle_y_max = deg_to_rad(angle_y_max)
+	
+	self.scale = Vector2(0.5, 0.5)
 	#collision_shape.set_deferred("disabled", true)
 
 func _process(delta: float) -> void:
@@ -45,12 +47,12 @@ func rotate_velocity(delta: float) -> void:
 	if not following_mouse: return
 	var center_pos: Vector2 = global_position - (size/2.0)
 	print("Pos: ", center_pos)
-	print("Pos: ", last_pos)
+	#print("Pos: ", last_pos)
 	# Compute the velocity
 	velocity = (position - last_pos) / delta
 	last_pos = position
 	
-	print("Velocity: ", velocity)
+	#print("Velocity: ", velocity)
 	oscillator_velocity += velocity.normalized().x * velocity_multiplier
 	
 	# Oscillator stuff
@@ -69,7 +71,9 @@ func rotate_velocity(delta: float) -> void:
 	#shadow.position.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance/(center.x)))
 
 func follow_mouse(delta: float) -> void:
+	
 	if not following_mouse: return
+	
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	global_position = lerp(position, (mouse_pos - (size/2.5)), 0.1)#SESSO AAAAHHHHH SESSO
 
@@ -141,4 +145,4 @@ func _on_mouse_exited() -> void:
 	if tween_hover and tween_hover.is_running():
 		tween_hover.kill()
 	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
-	tween_hover.tween_property(self, "scale", Vector2(.55, .55), 0.55)
+	tween_hover.tween_property(self, "scale", Vector2(.5, .5), 0.5)

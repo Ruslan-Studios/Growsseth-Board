@@ -1,7 +1,6 @@
 extends Button
 
 @onready var card_inv = $"../../../MarginContainer/VBoxContainer/InventoryContainer/CardInv"
-
 @export var from: Control
 @export var card_scene: PackedScene
 @export var card_offset_x: float = 20.0

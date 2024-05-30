@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/MapGenerator.gd" id="1_ub1c4"]
 [ext_resource type="Script" path="res://scripts/CameraContainer.gd" id="2_dp6oq"]
 [ext_resource type="Script" path="res://scripts/MapCamera.gd" id="2_iew3l"]
-[ext_resource type="PackedScene" uid="uid://dl1mpxa72k0v4" path="res://scenes/MatchUI.tscn" id="4_e42v8"]
+[ext_resource type="PackedScene" uid="uid://dl1mpxa72k0v4" path="res://scenes/components/MatchUI.tscn" id="4_e42v8"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -21,9 +21,5 @@ script = ExtResource("2_dp6oq")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 15, 15)
 current = true
 script = ExtResource("2_iew3l")
-
-[node name="RayCast3D" type="RayCast3D" parent="Marker3D"]
-transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, 15, 15)
-target_position = Vector3(25, 0, 0)
 
 [node name="MatchUi" parent="." instance=ExtResource("4_e42v8")]
