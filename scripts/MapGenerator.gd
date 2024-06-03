@@ -82,10 +82,10 @@ func map_to_percentage(value, from_min, from_max, to_min, to_max):
 	# Applica la percentuale al nuovo range
 	return to_min + percentage * (to_max - to_min)
 
-func checkDistance(value, secondValue, minDistance, pos1, center):
+func checkDistance(seed, value, secondValue, minDistance, pos1, center):
 	if ( sqrt( pow((pos1.x - center.x), 2) +  pow((pos1.y - center.y), 2)) > minDistance ) :
 		if(abs(value - secondValue) < minDistance):
-			value = minDistance + abs(value - secondValue) if fmod(seed_, 4) else -(minDistance + abs(value - secondValue) )
+			value = minDistance + abs(value - secondValue) if fmod(seed, 2) else +(minDistance - abs(value - secondValue) )
 	return value
 
 func generateSpawns(seedInt):
@@ -101,8 +101,8 @@ func generateSpawns(seedInt):
 	var center = Vector2(8, 4)
 	var mapX = round(map_to_percentage(leftSeed, 1, 81, 0, 16))
 	var mapY = round(map_to_percentage(rightSeed, 1, 81, 0, 8))
-	mapX = checkDistance(mapX, center.x, 2 , pos1, center)
-	mapY = checkDistance(mapY, center.y, 2 , pos1, center)
+	mapY = checkDistance(seedInt, mapY, center.y, 3.5 , pos1, center)
+	mapX = checkDistance(seedInt, mapX, center.x, 5 , pos1, center)
 	pos1 = Vector2(mapX, mapY)
 	print(pos1)
 	
