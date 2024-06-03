@@ -5,6 +5,7 @@ extends Camera3D
 #   Made by: NoelEm
 
 var sensivity = 0.2
+@onready var raycastPointer = $"../Raycast"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,10 +14,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if raycastPointer.is_colliding():
+		#print(raycastPointer.get_collision_point())
+		pass
 
 
 func _input(event):
+	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		position.z += sensivity
 		position.y += sensivity

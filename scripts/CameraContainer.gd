@@ -14,7 +14,7 @@ var lerp_factor = 0.05
 var target_rotation = Vector3()
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		dragging = event.pressed
 
 	if event is InputEventMouseMotion and dragging:
