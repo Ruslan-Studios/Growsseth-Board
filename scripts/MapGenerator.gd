@@ -37,7 +37,7 @@ var mapSize_ = [17, 9]
 var map = []
 
 # Seed for map generation
-@export var seed_: String = "quattro"
+@export var seed_: String = "MelminaVerde"
 
 # Convert string seed to a number
 func seedToNumber(seed: String) -> int:
@@ -60,14 +60,14 @@ func instanceMap():
 
 func generateEnd():
 	map[8][4] = 11
-	map[7][3] = 9
-	map[7][4] = 9
-	map[7][5] = 9
-	map[8][3] = 9
-	map[8][5] = 9
-	map[9][3] = 9
-	map[9][4] = 9
-	map[9][5] = 9
+	map[7][3] = 1
+	map[7][4] = 1
+	map[7][5] = 1
+	map[8][3] = 1
+	map[8][5] = 1
+	map[9][3] = 1
+	map[9][4] = 1
+	map[9][5] = 1
 
 func numberToDigit(number: String) -> int:
 	var n = 0
@@ -82,6 +82,12 @@ func map_to_percentage(value, from_min, from_max, to_min, to_max):
 	# Applica la percentuale al nuovo range
 	return to_min + percentage * (to_max - to_min)
 
+func checkDistance(value, secondValue, minDistance, pos1, center):
+	if ( sqrt( pow((pos1.x - center.x), 2) +  pow((pos1.y - center.y), 2)) > minDistance ) :
+		if(abs(value - secondValue) < minDistance):
+			value = minDistance + abs(value - secondValue) if fmod(seed_, 4) else -(minDistance + abs(value - secondValue) )
+	return value
+
 func generateSpawns(seedInt):
 	var pos1 = Vector2()
 	var pos2 = Vector2()
@@ -92,11 +98,11 @@ func generateSpawns(seedInt):
 	
 	leftSeed = numberToDigit(leftSeed)
 	rightSeed = numberToDigit(rightSeed)
-	
+	var center = Vector2(8, 4)
 	var mapX = round(map_to_percentage(leftSeed, 1, 81, 0, 16))
 	var mapY = round(map_to_percentage(rightSeed, 1, 81, 0, 8))
-	
-	var center = Vector2(8, 4)
+	mapX = checkDistance(mapX, center.x, 2 , pos1, center)
+	mapY = checkDistance(mapY, center.y, 2 , pos1, center)
 	pos1 = Vector2(mapX, mapY)
 	print(pos1)
 	
@@ -128,7 +134,7 @@ func _ready() -> void:
 		map.append(row)
 	
 	var seed_int = seedToNumber(seed_)
-	var melmina_seed = seedToNumber("MelminaVerde")
+	var melmina_seed = seedToNumber("MelminaVerd")
 	
 	var noise = FastNoiseLite.new()
 	noise.seed = seed_int
@@ -146,6 +152,7 @@ func _ready() -> void:
 			for y in range(mapSize_[1]):
 				var noise_value = noise.get_noise_2d(x, y)
 				var int_value = convert_noise_to_int(noise_value)
+				
 				map[x][y] = int_value
 				#instantiate_tile(int_value, Vector2(x, y))
 		

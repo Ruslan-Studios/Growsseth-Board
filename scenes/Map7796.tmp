@@ -8,7 +8,6 @@
 
 [node name="MapGenerator" type="Node" parent="."]
 script = ExtResource("1_ub1c4")
-seed_ = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.502447, 0.864608, 0, -0.864608, 0.502447, 0, 0, 0)
