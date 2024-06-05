@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://d30itdufgbekd"]
+
+[ext_resource type="PackedScene" uid="uid://bh3obrryqxaht" path="res://scenes/debug/DebugMessage.tscn" id="1_drin4"]
+
+[sub_resource type="GDScript" id="GDScript_r4ba6"]
+script/source = "extends VBoxContainer
+
+const Debug = preload(\"res://scripts/debug/Debug.gd\")
+
+var time: Dictionary
+var session_log: String
+
+var log_path: String
+var log_file: FileAccess
+
+func _ready():
+	time = Time.get_time_dict_from_system()
+	session_log = \"Log start: %02d:%02d:%02d\\n\" % [time.hour, time.minute, time.second]
+	log_path = \"user://debug_log/session_log_%02d-%02d-%02d.log\" % [time.hour, time.minute, time.second]
+	log_file = FileAccess.open(log_path, FileAccess.WRITE)
+	print(session_log)
+	print(log_path)
+
+# DebugMessage.tscn
+@export var DEBUG_MESSAGE: PackedScene
+
+## Connettere la seguente funzione a qualsiasi signal di tipo \"debug_message\"
+## I signal di tipo \"debug_message\" hanno due argomenti:
+## - message: il messaggio da visualizzare
+## - type: uno dei tipi definiti nell'enum in Debug.gd, influenza il colore e l'icona
+
+func _on_message_received(message: String, type: Debug.MESSAGE_TYPES):
+	if message == \"\":
+		print(\"Messaggio di debug vuoto.\")
+		return
+	
+	# Aggiungi il messaggio ricevuto al file di log
+	var formatted_message: String
+	time = Time.get_time_dict_from_system()
+	
+	match type:
+		Debug.MESSAGE_TYPES.ERROR:
+			formatted_message = \"ERROR - %02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
+		Debug.MESSAGE_TYPES.WARNING:
+			formatted_message = \"WARNING - %02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
+		Debug.MESSAGE_TYPES.INFO:
+			formatted_message = \"%02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
+		_:
+			formatted_message = \"%02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
+	
+	if(FileAccess.file_exists(log_path)):
+		log_file.store_string(formatted_message)
+		print(formatted_message)
+	else:
+		print(FileAccess.get_open_error())
+	
+	# Visualizza a schermo il messaggio
+	var debug_message = DEBUG_MESSAGE.instantiate()
+	debug_message.get_child(0).get_child(1).text = message
+	debug_message.get_child(0).get_child(1).msg_type = type
+	add_child(debug_message)
+"
+
+[sub_resource type="GDScript" id="GDScript_6i88g"]
+resource_name = "DebugButton"
+script/source = "extends Button
+
+const Debug = preload(\"res://scripts/debug/Debug.gd\")
+@onready var text_edit = $\"../TextEdit\"
+
+signal debug_message
+
+func _on_pressed():
+	debug_message.emit(text_edit.text, Debug.MESSAGE_TYPES.WARNING)
+"
+
+[node name="DebugConsole" type="VBoxContainer"]
+offset_right = 273.0
+offset_bottom = 70.0
+script = SubResource("GDScript_r4ba6")
+DEBUG_MESSAGE = ExtResource("1_drin4")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Console"
+scroll_fit_content_height = true
+
+[node name="SendMsgBtn" type="Button" parent="."]
+layout_mode = 2
+text = "Manda messaggio di prova"
+script = SubResource("GDScript_6i88g")
+
+[connection signal="debug_message" from="SendMsgBtn" to="." method="_on_message_received"]
+[connection signal="pressed" from="SendMsgBtn" to="SendMsgBtn" method="_on_pressed"]

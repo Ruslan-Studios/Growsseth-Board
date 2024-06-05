@@ -12,6 +12,8 @@ var tiles_: Dictionary = {}
 
 # Seed for map generation
 @export var seed_: String = "MelminaVerde"
+var mapWidth_ = 17
+var mapHeight_ = 9
 
 # Convert string seed to a number
 func seedToNumber(seed: String) -> int:
@@ -24,10 +26,8 @@ func _ready() -> void:
 	var melmina_seed = seedToNumber("MelminaVerde")
 	if seed_int == melmina_seed:
 		print("Hai appena MelminaVerdato")
-		var mapWidth = 17
-		var mapHeight = 9
-		for i in range(mapWidth):
-			for j in range(mapHeight):
+		for i in range(mapWidth_):
+			for j in range(mapHeight_):
 				var me = testingTile.instantiate()
 				add_child(me)
 				me.position = Vector3(i, 0, j)

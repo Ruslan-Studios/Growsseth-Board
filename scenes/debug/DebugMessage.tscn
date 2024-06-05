@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh3obrryqxaht"]
+
+[ext_resource type="Texture2D" uid="uid://caucli76geii8" path="res://textures/debug/error.png" id="1_1gld7"]
+
+[sub_resource type="GDScript" id="GDScript_8x7wb"]
+resource_name = "KMS"
+script/source = "extends MarginContainer
+
+@onready var animation_player = $AnimationPlayer
+
+func _ready():
+	animation_player.play(\"fade_out_debug_msg\")
+
+func _on_timer_timeout():
+	kill_myself_NOW()
+
+func kill_myself_NOW():
+	queue_free()
+"
+
+[sub_resource type="GDScript" id="GDScript_e1fg8"]
+resource_name = "DebugLabel"
+script/source = "extends Label
+
+const Debug = preload(\"res://scripts/debug/Debug.gd\")
+
+const ERROR = preload(\"res://textures/debug/error.png\")
+const WARNING = preload(\"res://textures/debug/warning.png\")
+const INFO = preload(\"res://textures/debug/info.png\")
+
+@onready var icon = $\"../DebugMessageIcon\"
+
+var msg_type: Debug.MESSAGE_TYPES
+
+func _ready():
+	match msg_type:
+		Debug.MESSAGE_TYPES.ERROR:
+			add_theme_color_override(\"font_color\", Color.RED)
+			icon.texture = ERROR
+		Debug.MESSAGE_TYPES.WARNING:
+			add_theme_color_override(\"font_color\", Color.DARK_ORANGE)
+			icon.texture = WARNING
+		Debug.MESSAGE_TYPES.INFO:
+			add_theme_color_override(\"font_color\", Color.GRAY)
+			icon.texture = INFO
+		_:
+			add_theme_color_override(\"font_color\", Color.GRAY)
+			icon.texture = INFO
+"
+
+[sub_resource type="Animation" id="Animation_lyip1"]
+resource_name = "fade_out_debug_msg"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5v2ih"]
+_data = {
+"fade_out_debug_msg": SubResource("Animation_lyip1")
+}
+
+[node name="DebugMessage" type="MarginContainer"]
+offset_right = 174.0
+offset_bottom = 33.0
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 2
+script = SubResource("GDScript_8x7wb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DebugMessageIcon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("1_1gld7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "PLACEHOLDER TEXT"
+script = SubResource("GDScript_e1fg8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5v2ih")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

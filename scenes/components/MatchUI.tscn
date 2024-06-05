@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="4_vmsaa"]
 [ext_resource type="Script" path="res://scripts/DrawCard.gd" id="8_6oxbx"]
 [ext_resource type="Script" path="res://scripts/DrawCardBtn.gd" id="9_0anhd"]
-[ext_resource type="PackedScene" uid="uid://c4j1wvyppvji7" path="res://scenes/Card.tscn" id="10_w5csg"]
+[ext_resource type="PackedScene" uid="uid://c4j1wvyppvji7" path="res://scenes/components/Card.tscn" id="10_w5csg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l2ucy"]
 blend_mode = 1
