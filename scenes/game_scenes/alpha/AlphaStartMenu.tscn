@@ -1,0 +1,224 @@
+[gd_scene load_steps=7 format=3 uid="uid://byanef28itfg3"]
+
+[ext_resource type="PackedScene" uid="uid://ju02qygl7u1w" path="res://scenes/components/Mappa.tscn" id="1_gaa81"]
+[ext_resource type="Script" path="res://scripts/menu/StartMenuButtons.gd" id="1_mtmm5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayi8r"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+
+[sub_resource type="GDScript" id="GDScript_fw6rx"]
+resource_name = "closeSettingsMenu"
+script/source = "extends Button
+
+@onready var settings_menu = $\"../../../../..\"
+
+func _on_pressed():
+	settings_menu.visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_xidqk"]
+resource_name = "windowModeOptions"
+script/source = "extends HBoxContainer
+
+@onready var options_button = $WModeOptions
+
+const WINDOW_MODES: Array[String] = [
+	\"Fullscreen\",
+	\"Windowed\",
+	\"Borderless Window\",
+	\"Borderless Fullscreen\",
+]
+
+func _ready():
+	add_winmode_items()
+
+func add_winmode_items() -> void:
+	for window_mode in WINDOW_MODES:
+		options_button.add_item(window_mode)
+
+func on_wmode_selected(index: int) -> void:
+	match index:
+		0: # Fullscreen
+			set_winmode(DisplayServer.WINDOW_MODE_FULLSCREEN, false)
+		1: # Windowed
+			set_winmode(DisplayServer.WINDOW_MODE_WINDOWED, false)
+		2: # Borderless window
+			set_winmode(DisplayServer.WINDOW_MODE_WINDOWED, true)
+		3: # Borderless fullscreen
+			set_winmode(DisplayServer.WINDOW_MODE_FULLSCREEN, true)
+
+func set_winmode(win_mode, isBorderless):
+	DisplayServer.window_set_mode(win_mode)
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, isBorderless)
+"
+
+[sub_resource type="GDScript" id="GDScript_bq8xn"]
+resource_name = "resolutionOptions"
+script/source = "extends HBoxContainer
+
+@onready var resolution_options = $ResolutionOptions
+
+const RESOLUTIONS = {
+	#\"4096×2160\" : Vector2i(4096, 2160),
+	#\"3840×2160\" : Vector2i(3840, 2160),
+	\"2560×1440\" : Vector2i(2560, 1440),
+	\"2048×1080\" : Vector2i(2048, 1080),
+	\"1920×1080\" : Vector2i(1920, 1080),
+	\"1280×720\" : Vector2i(1280, 720),
+}
+
+func _ready():
+	add_resolution_items()
+
+func add_resolution_items():
+	for res_text in RESOLUTIONS:
+		resolution_options.add_item(res_text)
+
+func on_res_selected(index: int) -> void:
+	DisplayServer.window_set_size(RESOLUTIONS.values()[index])
+"
+
+[node name="AlphaStartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartMenuButtons" type="MarginContainer" parent="." node_paths=PackedStringArray("play", "settings", "rules", "credits", "exit")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -132.0
+offset_bottom = 132.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 165
+script = ExtResource("1_mtmm5")
+play = NodePath("VBoxContainer/Play")
+settings = NodePath("VBoxContainer/Settings")
+rules = NodePath("VBoxContainer/Rules")
+credits = NodePath("VBoxContainer/Credits")
+exit = NodePath("VBoxContainer/Esci")
+playScene = ExtResource("1_gaa81")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenuButtons"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Play" type="Button" parent="StartMenuButtons/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "- Gioca -"
+
+[node name="Settings" type="Button" parent="StartMenuButtons/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "- Impostazioni -"
+
+[node name="Rules" type="Button" parent="StartMenuButtons/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "- Regole -"
+
+[node name="Credits" type="Button" parent="StartMenuButtons/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "- Crediti -"
+
+[node name="Esci" type="Button" parent="StartMenuButtons/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "- Esci -"
+
+[node name="SettingsMenu" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="SettingsTabs" type="TabContainer" parent="SettingsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/panel = SubResource("StyleBoxFlat_ayi8r")
+tab_alignment = 1
+
+[node name="Video" type="TabBar" parent="SettingsMenu/SettingsTabs"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu/SettingsTabs/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/SettingsTabs/Video/MarginContainer"]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "<-"
+script = SubResource("GDScript_fw6rx")
+
+[node name="WindowMode" type="HBoxContainer" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+script = SubResource("GDScript_xidqk")
+
+[node name="WModeLabel" type="Label" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/WindowMode"]
+layout_mode = 2
+text = "Window Mode"
+
+[node name="WModeOptions" type="OptionButton" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/WindowMode"]
+layout_mode = 2
+
+[node name="Resolution" type="HBoxContainer" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+script = SubResource("GDScript_bq8xn")
+
+[node name="ResolutionLabel" type="Label" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/Resolution"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="ResolutionOptions" type="OptionButton" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/Resolution"]
+layout_mode = 2
+
+[node name="Audio" type="TabBar" parent="SettingsMenu/SettingsTabs"]
+visible = false
+layout_mode = 2
+
+[node name="Comandi" type="TabBar" parent="SettingsMenu/SettingsTabs"]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="StartMenuButtons/VBoxContainer/Play" to="StartMenuButtons" method="_on_play_pressed"]
+[connection signal="pressed" from="StartMenuButtons/VBoxContainer/Settings" to="StartMenuButtons" method="_on_settings_pressed"]
+[connection signal="pressed" from="StartMenuButtons/VBoxContainer/Esci" to="StartMenuButtons" method="_on_exit_pressed"]
+[connection signal="pressed" from="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/BackBtn" to="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/BackBtn" method="_on_pressed"]
+[connection signal="item_selected" from="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/WindowMode/WModeOptions" to="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/WindowMode" method="on_wmode_selected"]
+[connection signal="item_selected" from="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/Resolution/ResolutionOptions" to="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/Resolution" method="on_res_selected"]
