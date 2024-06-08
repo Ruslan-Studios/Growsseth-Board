@@ -34,3 +34,5 @@ Growsseth Board is a 3D tabletop game inspired by the story of Cydonia's minecra
 | Horvat      | Artist   |                              [Instagram](https://www.instagram.com/_gianluca_g_/)                                                                    |
 | Darkiey      | Artist   |                             [Instagram](https://www.instagram.com/lara_darkiey/)                                                                    |
 | TinyFaith     | Artist   |                            [Instagram](https://www.instagram.com/tiny_fede.art/)                                                                   |
+| Mayruni     | Artist   |                            [Instagram](https://www.instagram.com/marvynag/)                                                                   |
+| Nizumo     | Artist   |                            [Instagram](https://www.instagram.com/nizumo_/)                                                                   |
