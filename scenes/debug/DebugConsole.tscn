@@ -96,11 +96,14 @@ func _on_command_submitted(command):
 
 signal debug_message_sent
 
-func send_debug_msg(msg: String, type: int):
-	type = clamp(type, 0, 2)
-	debug_message_sent.emit(msg, type)
+func debug(msg: String, type: int = 0):
+	if msg != \"\":
+		type = clamp(type, 0, 2)
+		debug_message_sent.emit(msg, type)
+	else:
+		debug_message_sent.emit(\"debug message not set\", 2)
 
-func reload_scene():
+func reload():
 	get_tree().reload_current_scene()
 
 # Comandi gameplay

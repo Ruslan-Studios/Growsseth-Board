@@ -37,7 +37,7 @@ var mapSize_ = [17, 9]
 var map = []
 
 # Seed for map generation
-@export var seed_: String = "MelminaVerde"
+@export var seed_: String = "Xertaw33"
 var mapWidth_ = 17
 var mapHeight_ = 9
 
