@@ -2,19 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://ju02qygl7u1w" path="res://scenes/components/Mappa.tscn" id="1_gaa81"]
 [ext_resource type="Script" path="res://scripts/menu/StartMenuButtons.gd" id="1_mtmm5"]
+[ext_resource type="Script" path="res://scripts/menu/SettingsMenu.gd" id="3_62mol"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayi8r"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 1)
-
-[sub_resource type="GDScript" id="GDScript_fw6rx"]
-resource_name = "closeSettingsMenu"
-script/source = "extends Button
-
-@onready var settings_menu = $\"../../../../..\"
-
-func _on_pressed():
-	settings_menu.visible = false
-"
 
 [sub_resource type="GDScript" id="GDScript_xidqk"]
 resource_name = "windowModeOptions"
@@ -141,7 +132,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "- Esci -"
 
-[node name="SettingsMenu" type="MarginContainer" parent="."]
+[node name="SettingsMenu" type="MarginContainer" parent="." node_paths=PackedStringArray("close_settings_btn")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -153,6 +144,8 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
+script = ExtResource("3_62mol")
+close_settings_btn = NodePath("SettingsTabs/Video/MarginContainer/VBoxContainer/BackBtn")
 
 [node name="SettingsTabs" type="TabContainer" parent="SettingsMenu"]
 layout_mode = 2
@@ -182,7 +175,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 text = "<-"
-script = SubResource("GDScript_fw6rx")
 
 [node name="WindowMode" type="HBoxContainer" parent="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -219,6 +211,5 @@ layout_mode = 2
 [connection signal="pressed" from="StartMenuButtons/VBoxContainer/Play" to="StartMenuButtons" method="_on_play_pressed"]
 [connection signal="pressed" from="StartMenuButtons/VBoxContainer/Settings" to="StartMenuButtons" method="_on_settings_pressed"]
 [connection signal="pressed" from="StartMenuButtons/VBoxContainer/Esci" to="StartMenuButtons" method="_on_exit_pressed"]
-[connection signal="pressed" from="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/BackBtn" to="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/BackBtn" method="_on_pressed"]
 [connection signal="item_selected" from="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/WindowMode/WModeOptions" to="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/WindowMode" method="on_wmode_selected"]
 [connection signal="item_selected" from="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/Resolution/ResolutionOptions" to="SettingsMenu/SettingsTabs/Video/MarginContainer/VBoxContainer/Resolution" method="on_res_selected"]

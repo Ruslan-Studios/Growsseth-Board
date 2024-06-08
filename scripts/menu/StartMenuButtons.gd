@@ -19,4 +19,5 @@ func _on_settings_pressed():
 func _on_exit_pressed():
 	get_tree().quit()
 
-
+func _on_back_btn_pressed():
+	pass # Replace with function body.

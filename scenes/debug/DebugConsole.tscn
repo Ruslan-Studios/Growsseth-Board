@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://d30itdufgbekd"]
+[gd_scene load_steps=6 format=3 uid="uid://d30itdufgbekd"]
 
 [ext_resource type="PackedScene" uid="uid://bh3obrryqxaht" path="res://scenes/debug/DebugMessage.tscn" id="1_drin4"]
+[ext_resource type="Texture2D" uid="uid://c7pl6qcbv52e1" path="res://textures/debug/view.png" id="2_jle38"]
+[ext_resource type="Texture2D" uid="uid://ceq73pm3w02k2" path="res://textures/debug/hide.png" id="3_snjjp"]
 
 [sub_resource type="GDScript" id="GDScript_r4ba6"]
-script/source = "extends VBoxContainer
+script/source = "extends Control
 
-const Debug = preload(\"res://scripts/debug/Debug.gd\")
+const DebugLib = preload(\"res://scripts/debug/Debug.gd\")
 
 var time: Dictionary
 var session_log: String
 
 var log_path: String
 var log_file: FileAccess
+
+# Comandi
+var expression = Expression.new()
+@onready var CLI = %ConsoleCLI
+@onready var console_log = %ConsoleLogText
 
 func _ready():
 	time = Time.get_time_dict_from_system()
@@ -21,15 +28,25 @@ func _ready():
 	print(session_log)
 	print(log_path)
 
+func _process(delta: float) -> void:
+	# Shortcut per mostrare o nascondere la console utilizzando il tasto \"\\\"
+	if(Input.is_action_just_pressed(\"show_hide_console\")):
+		visible = not visible
+
 # DebugMessage.tscn
 @export var DEBUG_MESSAGE: PackedScene
 
-## Connettere la seguente funzione a qualsiasi signal di tipo \"debug_message\"
-## I signal di tipo \"debug_message\" hanno due argomenti:
+# %MessagesList
+@onready var messages_list = %MessagesList
+
+# Message Output
+
+## Connettere la seguente funzione a qualsiasi signal di tipo \"debug_message_sent\"
+## I signal di tipo \"debug_message_sent\" hanno due argomenti:
 ## - message: il messaggio da visualizzare
 ## - type: uno dei tipi definiti nell'enum in Debug.gd, influenza il colore e l'icona
 
-func _on_message_received(message: String, type: Debug.MESSAGE_TYPES):
+func _on_message_received(message: String, type: DebugLib.MESSAGE_TYPES):
 	if message == \"\":
 		print(\"Messaggio di debug vuoto.\")
 		return
@@ -39,11 +56,11 @@ func _on_message_received(message: String, type: Debug.MESSAGE_TYPES):
 	time = Time.get_time_dict_from_system()
 	
 	match type:
-		Debug.MESSAGE_TYPES.ERROR:
+		DebugLib.MESSAGE_TYPES.ERROR:
 			formatted_message = \"ERROR - %02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
-		Debug.MESSAGE_TYPES.WARNING:
+		DebugLib.MESSAGE_TYPES.WARNING:
 			formatted_message = \"WARNING - %02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
-		Debug.MESSAGE_TYPES.INFO:
+		DebugLib.MESSAGE_TYPES.INFO:
 			formatted_message = \"%02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
 		_:
 			formatted_message = \"%02d:%02d:%02d - %s\\n\" % [time.hour, time.minute, time.second, message]
@@ -58,37 +75,126 @@ func _on_message_received(message: String, type: Debug.MESSAGE_TYPES):
 	var debug_message = DEBUG_MESSAGE.instantiate()
 	debug_message.get_child(0).get_child(1).text = message
 	debug_message.get_child(0).get_child(1).msg_type = type
-	add_child(debug_message)
+	messages_list.add_child(debug_message)
+
+# Command Input
+func _on_command_submitted(command):
+	var error = expression.parse(command)
+	if error != OK:
+		console_log.append_text(\"\\n\" + str(expression.get_error_text()))
+		CLI.text = \"\"
+		return
+
+	var result = expression.execute([], self)
+	if not expression.has_execute_failed():
+		console_log.append_text(str(result) + \"\\n\")
+		CLI.text = \"\"
+
+################ COMANDI UTILIZZABILI DALLA CONSOLE ################
+
+# Comandi di debug
+
+signal debug_message_sent
+
+func send_debug_msg(msg: String, type: int):
+	type = clamp(type, 0, 2)
+	debug_message_sent.emit(msg, type)
+
+func reload_scene():
+	get_tree().reload_current_scene()
+
+# Comandi gameplay
 "
 
-[sub_resource type="GDScript" id="GDScript_6i88g"]
-resource_name = "DebugButton"
-script/source = "extends Button
+[sub_resource type="GDScript" id="GDScript_x65xp"]
+resource_name = "ConsoleShowHideBtn"
+script/source = "extends TextureButton
 
-const Debug = preload(\"res://scripts/debug/Debug.gd\")
-@onready var text_edit = $\"../TextEdit\"
+var isHidden: bool = false
 
-signal debug_message
+@export var hideTexture: CompressedTexture2D
+@export var showTexture: CompressedTexture2D
+
+@onready var console_log = $\"../VBoxContainer/ConsoleLog\"
 
 func _on_pressed():
-	debug_message.emit(text_edit.text, Debug.MESSAGE_TYPES.WARNING)
+	isHidden = not isHidden
+	console_log.visible = not console_log.visible
+	
+	if isHidden:
+		texture_normal = showTexture
+	else:
+		texture_normal = hideTexture
 "
 
-[node name="DebugConsole" type="VBoxContainer"]
-offset_right = 273.0
-offset_bottom = 70.0
+[node name="DebugConsole" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = SubResource("GDScript_r4ba6")
 DEBUG_MESSAGE = ExtResource("1_drin4")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConsoleCLI" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "Console"
-scroll_fit_content_height = true
 
-[node name="SendMsgBtn" type="Button" parent="."]
+[node name="ConsoleLog" type="ColorRect" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1650, 500)
 layout_mode = 2
-text = "Manda messaggio di prova"
-script = SubResource("GDScript_6i88g")
+color = Color(0.176471, 0.176471, 0.176471, 0.568627)
 
-[connection signal="debug_message" from="SendMsgBtn" to="." method="_on_message_received"]
-[connection signal="pressed" from="SendMsgBtn" to="SendMsgBtn" method="_on_pressed"]
+[node name="ConsoleLogText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer/ConsoleLog"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1650, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_following = true
+context_menu_enabled = true
+
+[node name="ShowHideBtn" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_snjjp")
+ignore_texture_size = true
+stretch_mode = 0
+script = SubResource("GDScript_x65xp")
+hideTexture = ExtResource("3_snjjp")
+showTexture = ExtResource("2_jle38")
+
+[node name="MessagesList" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[connection signal="debug_message_sent" from="." to="." method="_on_message_received"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/VBoxContainer/ConsoleCLI" to="." method="_on_command_submitted"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ShowHideBtn" to="MarginContainer/VBoxContainer/ShowHideBtn" method="_on_pressed"]
