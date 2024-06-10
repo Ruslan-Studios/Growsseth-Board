@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dk4a1di1tkx71"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_ys4n5"]
+
+[resource]
+script = ExtResource("1_ys4n5")
+deck_type = 1
+id = 2
+card_name = "JULIUS, IL LUPO MALEDETTO"
+card_type = 0
+lore = "Le leggende narrano di lui come un infallibile segugio maledetto."
+description = "RUBI un EQUIPAGGIAMENTO EXTRA in caso di VITTORIA di una GUERRA dichiarata da te."

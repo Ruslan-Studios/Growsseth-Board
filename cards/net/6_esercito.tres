@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://m05jnc7ek4c0"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_grp0q"]
+
+[resource]
+script = ExtResource("1_grp0q")
+deck_type = 4
+id = 6
+card_name = "ASSALTO DELL’ESERCITO INFERNALE"
+card_type = 2
+lore = "I Maialtri fuggiti dal portale ti danno la caccia."
+description = "Subisci un DANNO pari a 7 CUORI a meno che tu non abbia 3 LINGOTTI D’ORO da SCAMBIARE con i MAIALTRI."

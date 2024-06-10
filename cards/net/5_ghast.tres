@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dnljr5mxq4phb"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_uv2fi"]
+
+[resource]
+script = ExtResource("1_uv2fi")
+deck_type = 4
+id = 5
+card_name = "DEMONE BIANCO"
+card_type = 1
+lore = "Noto anche come I-oi."
+description = "Quando PESCHI questa CARTA tira il dado. Se ottieni un risultato di 8+ (puoi aggiungere il BONUS della tua SPADA al tiro) ottieni una LACRIMA DI GHAST, la quale ti permette di recuperare SALUTE fino a un massimo di 5 CUORI. Se ottieni un risultato inferiore a 8 subisci un DANNO pari a 4 CUORI."

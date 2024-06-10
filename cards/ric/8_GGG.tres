@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://d2jh0rcu73mou"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_fjtrs"]
+
+[resource]
+script = ExtResource("1_fjtrs")
+deck_type = 0
+id = 8
+card_name = "IL GRANDE GOLEM GENTILE"
+card_type = 1
+lore = "Amico di tutti gli abitanti di Growsseth, ma si dice che non ami le freddure, meglio non rischiare!"
+description = "Al prezzo di 4 LINGOTTI DI FERRO, ottieni un GETTONE GOLEM. Un GOLEM salverà un ACCAMPAMENTO a tua scelta da 2 tentativi di DISTRUZIONE. L’ACCAMPAMENTO scelto deve essere segnalato apponendovi il GETTONE GOLEM."

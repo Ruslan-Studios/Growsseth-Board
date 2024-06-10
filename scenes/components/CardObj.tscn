@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4j1wvyppvji7"]
+
+[ext_resource type="Script" path="res://scripts/CardObj.gd" id="1_kl7ts"]
+[ext_resource type="Shader" path="res://shader/card.gdshader" id="2_xwvxo"]
+[ext_resource type="Texture2D" uid="uid://da2ystap0ko17" path="res://textures/cards/layout/layout_nether.png" id="3_gk4ke"]
+[ext_resource type="Texture2D" uid="uid://b8o2y4j7e21h5" path="res://textures/cards/artwork/ghast.png" id="4_uo2pa"]
+[ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="5_ffyu6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kblwm"]
+shader = ExtResource("2_xwvxo")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nd6cm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3e8t8"]
+
+[node name="Card" type="Button"]
+anchors_preset = -1
+anchor_left = -0.053
+anchor_top = -0.104
+anchor_right = 0.05
+anchor_bottom = 0.113
+offset_left = -171.52
+offset_top = -226.24
+offset_right = 164.0
+offset_bottom = 243.28
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(286, 376)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+script = ExtResource("1_kl7ts")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_kblwm")
+custom_minimum_size = Vector2(558, 781)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.023
+anchor_top = -0.055
+anchor_right = 1.023
+anchor_bottom = 1.055
+offset_left = 12.2654
+offset_top = 39.2134
+offset_right = -12.2654
+offset_bottom = -39.2134
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(558, 781)
+render_target_update_mode = 4
+
+[node name="Layout" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+offset_right = 2481.0
+offset_bottom = 3472.0
+scale = Vector2(0.225, 0.225)
+texture = ExtResource("3_gk4ke")
+
+[node name="Artwork" type="TextureRect" parent="SubViewportContainer/SubViewport/Layout"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 390.0
+offset_right = 2282.0
+offset_bottom = 1916.0
+texture = ExtResource("4_uo2pa")
+
+[node name="NameContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport"]
+offset_right = 297.0
+offset_bottom = 76.0
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 44
+
+[node name="NomeCarta" type="Label" parent="SubViewportContainer/SubViewport/NameContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ffyu6")
+theme_override_font_sizes/font_size = 32
+text = "Demone Bianco"
+
+[node name="TypeContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 54
+
+[node name="Tipo" type="Label" parent="SubViewportContainer/SubViewport/TypeContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("5_ffyu6")
+theme_override_font_sizes/font_size = 16
+text = "TS"
+
+[node name="LoreContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = 63.5
+offset_right = 231.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nd6cm")
+
+[node name="Lore" type="Label" parent="SubViewportContainer/SubViewport/LoreContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_ffyu6")
+theme_override_font_sizes/font_size = 24
+text = "Noto anche come I-oi."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EffectContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -231.0
+offset_top = -215.0
+offset_right = 231.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3e8t8")
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/EffectContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+
+[node name="Effetto" type="RichTextLabel" parent="SubViewportContainer/SubViewport/EffectContainer/MarginContainer"]
+custom_minimum_size = Vector2(460, 155)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("5_ffyu6")
+bbcode_enabled = true
+text = "Quando PESCHI questa CARTA tira il dado. Se ottieni un risultato pari o superiore a 8 (puoi aggiungere il BONUS della tua SPADA al tiro) ottieni una LACRIMA DI GHAST, la quale ti permette di recuperare SALUTE fino a un massimo di 5 CUORI. Se ottieni un risultato inferiore a 8 subisci un DANNO pari a 4 [img=16x16]res://textures/cards/icons/cuore.png[/img]."
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

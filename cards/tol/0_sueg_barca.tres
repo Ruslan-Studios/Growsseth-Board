@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://btl3pp3fq4uy"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_486um"]
+
+[resource]
+script = ExtResource("1_486um")
+deck_type = 3
+id = 0
+card_name = "SUEG BARCA"
+card_type = 0
+lore = "Fedele compagna di viaggi, e con una vasta gamma di colori!"
+description = "Ottieni una BARCA senza doverla CRAFTARE oppure 6 ASSI di LEGNO."

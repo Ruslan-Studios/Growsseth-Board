@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b1a56mayipkyr"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_lb1mj"]
+
+[resource]
+script = ExtResource("1_lb1mj")
+deck_type = 2
+id = 1
+card_name = "L’ARMA DEL FUTURO"
+card_type = 1
+lore = "NO LORE"
+description = "Spendi 1 TURNO per caricarla, ma dal successivo il DANNO inflitto dalle tue FRECCE aumenta di 1 CUORE. (ruba 1 MATERIALE ?)"

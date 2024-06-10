@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://d2h5bca16r2rn"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_7e8ap"]
+
+[resource]
+script = ExtResource("1_7e8ap")
+deck_type = 3
+id = 5
+card_name = "CAGNOLINO"
+card_type = 1
+lore = "Hai trovato un cagnolino abbandonato, adesso è tuo (lascialo libero ti prego)."
+description = "Se vieni attaccato, ti difenderà infliggendo un DANNO pari a 1 CUORE all’attaccante, poi il CAGNOLINO SCAPPA. In caso avessi già un CAGNOLINO, PESCANDO nuovamente questa CARTA otterrai una CURA pari a 2 CUORI (dall’affetto del nuovo amichetto)."

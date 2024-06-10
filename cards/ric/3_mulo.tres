@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ji0p48s7pdmc"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_ob3b8"]
+
+[resource]
+script = ExtResource("1_ob3b8")
+deck_type = 0
+id = 3
+card_name = "MULO DA TRAINO"
+card_type = 1
+lore = "Finalmente non devi più andare a piedi."
+description = "Non è il più grande degli stalloni ma ci si accontenta: ti consente un MOVIMENTO di 2 QUADRANTI alla volta. Inoltre, quando vieni attaccato ti garantisce la possibilità di FUGGIRE. Dopodiché, il MULO si spaventa e SCAPPA; una volta che il mulo è SCAPPATO, SCARTA questa CARTA."

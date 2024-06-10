@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://s45qu4258160"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_otc1n"]
+
+[resource]
+script = ExtResource("1_otc1n")
+deck_type = 1
+id = 7
+card_name = "IL CULTO DELL’OCCHIO"
+card_type = 1
+lore = "Setta misteriosa, con sede in una vecchia chiesa abbandonata. A volte si sente qualche suono misterioso provenire da lì."
+description = "La prima volta che ottieni un OCCHIO DELL’END ti CURI di 3 CUORI, se sei al massimo di SALUTE ottieni ESPERIENZA pari a 3 LIVELLI. In caso fossi già a 30 livelli, tieni questa carta da parte fino a quando non subisci DANNI. Una volta utilizzata, SCARTA questa CARTA."

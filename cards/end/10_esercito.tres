@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://kl3v68c0d0lt"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_rlj2i"]
+
+[resource]
+script = ExtResource("1_rlj2i")
+deck_type = 5
+id = 10
+card_name = "ESERCITO DELL’END"
+card_type = 2
+lore = "La forza dell’altro mondo."
+description = "Subisci un DANNO pari a 4 CUORI, ma guadagnI 1 OCCHIO DELL’END."

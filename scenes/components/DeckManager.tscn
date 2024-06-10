@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jq0khrojff0e"]
+
+[ext_resource type="Script" path="res://scripts/DeckManager.gd" id="1_m78or"]
+
+[node name="DecksManager" type="Node"]
+script = ExtResource("1_m78or")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bslee4q5m7bsw"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_jc4ql"]
+
+[resource]
+script = ExtResource("1_jc4ql")
+deck_type = 1
+id = 0
+card_name = "LIONEL, L’ARCIERE CECCHINO"
+card_type = 1
+lore = "L’arciere della leggenda, si dice che non fallisse mai un colpo."
+description = "Se hai un ARCO e almeno 1 FRECCIA, puoi colpire da 4 QUADRANTI di distanza. Se fallisci, puoi riprovare con la stessa freccia da 1 QUADRANTE di distanza dopo aver usato il tuo MOVIMENTO per avvicinarti nel TURNO successivo."

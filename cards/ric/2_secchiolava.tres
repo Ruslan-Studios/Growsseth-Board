@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://c7ilxri23xk4n"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_lo5s3"]
+
+[resource]
+script = ExtResource("1_lo5s3")
+deck_type = 0
+id = 2
+card_name = "IL SECCHIO DI LAVA"
+card_type = 0
+lore = "Come si faceva il secchi- AHHH LE PALLE!"
+description = "Automatizzi la FORNACE senza dover usare un pezzo di CABBONS. (TI CURA DI 1 SE SCEGLI QUESTA AZIONE BONUS)"

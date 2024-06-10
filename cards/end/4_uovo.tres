@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ch3qnwda6ayxo"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_wsynk"]
+
+[resource]
+script = ExtResource("1_wsynk")
+deck_type = 5
+id = 4
+card_name = "UOVO DI DRAGO"
+card_type = 2
+lore = "The End. O forse no."
+description = "Se la CARTA DRAGO DELL’END viene scartata, chi PESCA questa CARTA RIMETTE nel mazzo la CARTA DRAGO DELL’END precedentemente SCARTATA e SCARTA questa CARTA. Se tutte le CARTE SALVEZZA sono state SCARTATE, e un giocatore PESCA questa CARTA, i giocatori perdono. Se questa carta viene pescata prima della CARTA DRAGO DELL’END va RIMESSA nel MAZZO."

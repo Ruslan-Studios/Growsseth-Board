@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dij3sgq1uvqpo"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_tbvm1"]
+
+[resource]
+script = ExtResource("1_tbvm1")
+deck_type = 1
+id = 4
+card_name = "NICOLAOS, IL CUBETTO ESPLOSIVO"
+card_type = 2
+lore = "Il suono delle sue esplosioni incontrollate riecheggia ancora per le lande di Growsseth."
+description = "DISTRUGGI un ACCAMPAMENTO nemico qualsiasi, a tua scelta. Se non ce ne sono, infliggi all’avversario con più SALUTE un DANNO pari a 3 CUORI."

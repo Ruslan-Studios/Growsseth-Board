@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b2jjflfpvgweo"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_gat2n"]
+
+[resource]
+script = ExtResource("1_gat2n")
+deck_type = 1
+id = 6
+card_name = "LE TERRE DI SCULK"
+card_type = 1
+lore = "Terreno instabile, organico forse, che si nutre dell’esperienza altrui. Cos’altro potrebbe mai nascondere?"
+description = "Ottieni un GETTONE SCULK e lo piazzi subito in un QUADRANTE a tua scelta (tranne il PORTALE DELL’END), se un altro giocatore ci passa sopra ottieni ESPERIENZA pari a 5 LIVELLI. Se hai già raggiunto 30 LIVELLI, ottieni invece un premio a scelta tra: una CURA di 5 CUORI o 1 OCCHIO DELL’END. Dopodiché SCARTA questa CARTA e il GETTONE."

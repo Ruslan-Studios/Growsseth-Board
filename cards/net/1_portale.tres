@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://brgmtfeh2jhnv"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_t3ct6"]
+
+[resource]
+script = ExtResource("1_t3ct6")
+deck_type = 4
+id = 0
+card_name = "PORTALE"
+card_type = 2
+lore = "Comodo mezzo di trasporto. Sempre se non muori nel tragitto."
+description = "Questa CARTA ti permette di ottenere un GETTONE PORTALE che puoi posizionare su un PORTALE a tua scelta sulla MAPPA. Qualsiasi altro giocatore voglia passare da quel PORTALE dovrà PAGARTI 2 LINGOTTI D’ORO."

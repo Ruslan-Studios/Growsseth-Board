@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dvjfqv1mlvskl"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_p2q16"]
+
+[resource]
+script = ExtResource("1_p2q16")
+deck_type = 0
+id = 6
+card_name = "LA BIBLIOTECA"
+card_type = 0
+lore = "Sogno di ogni ricercatore, un buco in cui chiudersi a studiare IL POTERE DELLA SCIENZA!"
+description = "Quando sei in un tuo ACCAMPAMENTO o nel tuo SPAWNPOINT, puoi CRAFTARE qualsiasi OGGETTO con uno sconto di 1 unità per ogni MATERIALE richiesto."

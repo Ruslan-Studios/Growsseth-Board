@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bxt47gonv06sh"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_vjyb7"]
+
+[resource]
+script = ExtResource("1_vjyb7")
+deck_type = 4
+id = 4
+card_name = "DEMONE NERO"
+card_type = 2
+lore = "Affronta le tue paure più recondite!"
+description = "Quando PESCHI questa CARTA tira il dado: se ottieni un risultato pari a 9+ (puoi aggiungere il BONUS della tua SPADA al tiro) il DEMONE NERO sarà sconfitto e guadagnerai una ENDER PEARL. Se ottieni un risultato inferiore a 9 subirai un DANNO pari a 2 CUORI e il DEMONE NERO ti RUBERÀ un OGGETTO a caso tra: ENDER PEARL, VERGA DI BLAZE, OCCHIO DELL’END. Se il giocatore possiede tutti e tre gli OGGETTI, il DEMONE NERO ruberà l’OCCHIO DELL’END. In caso contrario il giocatore potrà scegliere cosa SCARTARE. In caso il giocatore non abbia nessuno di questi OGGETTI nell’INVENTARIO, il DEMONE NERO andrà affrontato come in una normale SFIDA."

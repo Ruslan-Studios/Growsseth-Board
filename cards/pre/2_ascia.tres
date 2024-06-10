@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dqavt1f4tk0s1"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_05qcr"]
+
+[resource]
+script = ExtResource("1_05qcr")
+deck_type = 2
+id = 2
+card_name = "ASCIA INCANTATA"
+card_type = 1
+lore = "Un’arma sconosciuta ai più, emana una strana energia."
+description = "Quando sei nella FORESTA FITTA, il tuo MOVIMENTO aumenta di 1 TILE e hai +3 BONUS sulla distruzione dell’accampamento (ignora gli schiavi all’interno delle MINIERE), se distruggi un accampamento scarta questa carta."

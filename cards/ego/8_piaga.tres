@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dsalfhsk7lo7e"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_hqfy2"]
+
+[resource]
+script = ExtResource("1_hqfy2")
+deck_type = 1
+id = 8
+card_name = "LA PIAGA AVANZA"
+card_type = 1
+lore = "La malattia si sta avvicinando sempre di più!"
+description = "Se un avversario (o entrambi) si avvicinano e raggiungono (o sono già a) 1 TILE di distanza da te, subiscono un DANNO pari a 5 CUORI."

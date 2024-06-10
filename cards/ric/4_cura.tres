@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cdq0h8uokcyha"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_ffa82"]
+
+[resource]
+script = ExtResource("1_ffa82")
+deck_type = 0
+id = 4
+card_name = "LA CURA DEI RICERCATORI"
+card_type = 1
+lore = "LA SOLUZIONE!"
+description = "Se il ricercatore MUORE, RESPAWNERÀ, con l’EQUIPAGGIAMENTO di base, all’ultimo ACCAMPAMENTO costruito. Se non esiste più o non è mai esistito, tornerà allo SPAWNPOINT. Scarta questa CARTA una volta utilizzata."

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dtmtbs7i8bgup"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_ynxi1"]
+
+[resource]
+script = ExtResource("1_ynxi1")
+deck_type = 3
+id = 7
+card_name = "CARRELLO DA MINIERA"
+card_type = 1
+lore = "“Ah no, non è un secchio questo.”"
+description = "Ottieni un CARRELLO DA MINIERA oppure 8 LINGOTTI DI FERRO."

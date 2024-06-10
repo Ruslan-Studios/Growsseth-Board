@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bnxxym2ho4f0w"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_ydqup"]
+
+[resource]
+script = ExtResource("1_ydqup")
+deck_type = 5
+id = 8
+card_name = "PRIGIONE"
+card_type = 2
+lore = "Come si torna a casa ora?"
+description = "Se PESCHI questa CARTA non potrai usare l’AZIONE di MOVIMENTO per il TURNO successivo e, sempre nel TURNO successivo dovrai PESCARE nuovamente una CARTA MINACCIA DELL’END."

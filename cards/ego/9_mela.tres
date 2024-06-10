@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cgenqcf6d15gs"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_thfhv"]
+
+[resource]
+script = ExtResource("1_thfhv")
+deck_type = 1
+id = 9
+card_name = "LA MELA D’ORO"
+card_type = 0
+lore = "Il destino di Egobalego è intrecciato indissolubilmente a questo simbolo di assoluta avidità."
+description = "Ti permette di tornare in vita nello SPAWNPOINT con l’EQUIPAGGIAMENTO di base."

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ju7ewvf1ar1l"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_f2b0v"]
+
+[resource]
+script = ExtResource("1_f2b0v")
+deck_type = 0
+id = 9
+card_name = "L’ORTO AUTOMATIZZATO"
+card_type = 0
+lore = "I sapori della mia terra!"
+description = "Se hai visitato almeno un VILLAGGIO, un rifornimento continuo di patate, carote e grano ti sazierà ad ogni turno. Ti curi di 2 CUORI ogni volta che torni in un qualsiasi VILLAGGIO."

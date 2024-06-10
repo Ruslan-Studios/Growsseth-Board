@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cdd3hq2dd1e65"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_n5nh4"]
+
+[resource]
+script = ExtResource("1_n5nh4")
+deck_type = 0
+id = 5
+card_name = "ASSEMBLEA DI VILLAGGIO"
+card_type = 0
+lore = "“SUONATE LA CAMPANA, IL RICERCATORE È TORNATO!” Il VILLAGGIO ti accoglie di ritorno dal tuo lungo viaggio, puoi finalmente riposarti. Quanto tempo passerà prima del prossimo incontro?"
+description = " Se torni in un VILLAGGIO già visitato pesca 1 carte TOOLS a scelta. Una volta utilizzata, SCARTA questa CARTA."

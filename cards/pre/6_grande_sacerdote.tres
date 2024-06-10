@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dgtdp0p1pyd7k"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_js8qa"]
+
+[resource]
+script = ExtResource("1_js8qa")
+deck_type = 2
+id = 6
+card_name = "IL GRANDE SACERDOTE"
+card_type = 1
+lore = "Tramite occulti riti sacrileghi rianima i corpi dei morti per scatenare la distruzione."
+description = "In caso di MORTE, tornerai allo SPAWNPOINT con l’EQUIPAGGIAMENTO di base."

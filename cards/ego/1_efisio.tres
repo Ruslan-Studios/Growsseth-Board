@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://blffcqogaoq8s"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_dhcn1"]
+
+[resource]
+script = ExtResource("1_dhcn1")
+deck_type = 1
+id = 1
+card_name = "EFISIO, IL MANGIA LAVA"
+card_type = 0
+lore = "Si dice che la sua mastodontica esperienza nel manovrare la lava gli permettesse di migliorare tutto ciò che passava per le sue mani."
+description = "Qualsiasi tua SPADA e PICCONE riceve un BONUS aggiuntivo di +1."

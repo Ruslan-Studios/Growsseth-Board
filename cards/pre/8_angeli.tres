@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b2vw686e24uwc"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_sale2"]
+
+[resource]
+script = ExtResource("1_sale2")
+deck_type = 2
+id = 8
+card_name = "ANGELI DELLA MORTE"
+card_type = 0
+lore = "Dei bambini doppiamente pestiferi e doppiamente assettati di sangue."
+description = "Finché hai questa CARTA in mano ti curi di un numero di CUORI equivalente al DANNO inferto agli avversari."

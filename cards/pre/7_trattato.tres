@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bx4pretkq0sk1"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_dcekj"]
+
+[resource]
+script = ExtResource("1_dcekj")
+deck_type = 2
+id = 7
+card_name = "TRATTATO DEI BRUTI"
+card_type = 1
+lore = "Tra bruti ci si intende, si instaura la tregua (momentanea) con i Maialtri."
+description = "Quando viene PESCATO l’ASSALTO DELL’ESERCITO INFERNALE, puoi scappare senza pagare LINGOTTI D’ORO. Una volta utilizzata, SCARTA questa CARTA."

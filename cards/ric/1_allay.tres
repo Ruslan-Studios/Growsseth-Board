@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://brf7vdg05srul"]
+
+[ext_resource type="Script" path="res://scripts/Card.gd" id="1_fdr78"]
+
+[resource]
+script = ExtResource("1_fdr78")
+deck_type = 0
+id = 1
+card_name = "BAMBINI PESTIFERI"
+card_type = 1
+lore = "Due spiritelli che decideranno di inseguirti per sempre, portandoti dei doni."
+description = "-Tira 1d12: se come risultato ottieni da 1 a 4, ottieni un LINGOTTO d’ORO; se come risultato ottieni da 5 a 8, ottieni un DIAMANTE; se come risultato ottieni da 9 a 12, ottieni un CABBONS, dopodiché SCARTA questa CARTA. 
+-In alternativa: SCARTA questa CARTA e scegli una carta dell’avversario. In questo modo costringerai l’avversario a SCARTARE la CARTA che hai scelto. Puoi compiere questa AZIONE in un momento qualsiasi."

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bh3obrryqxaht"]
 
-[ext_resource type="Texture2D" uid="uid://caucli76geii8" path="res://textures/debug/error.png" id="1_1gld7"]
+[ext_resource type="Texture2D" uid="uid://caucli76geii8" path="res://textures/_debug/error.png" id="1_1gld7"]
 
 [sub_resource type="GDScript" id="GDScript_8x7wb"]
 resource_name = "KMS"
