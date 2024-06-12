@@ -4,3 +4,4 @@
 
 [node name="CardDatabase" type="Node"]
 script = ExtResource("1_a1v8s")
+cards_folder = "res://cards"

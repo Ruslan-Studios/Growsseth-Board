@@ -4,3 +4,9 @@
 
 [node name="Player" type="Node"]
 script = ExtResource("1_j5jld")
+
+[node name="TurnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="TurnTimer" to="." method="_on_timer_timeout"]

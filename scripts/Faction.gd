@@ -1,7 +1,7 @@
 extends Node
 class_name Faction
 
-enum FACTION_TYPE { RICERCATORI, EGOBALEGO, PREDONI }
+enum FACTION_TYPES { RICERCATORI, EGOBALEGO, PREDONI }
 
 func _ready():
 	pass

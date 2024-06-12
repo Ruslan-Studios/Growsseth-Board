@@ -24,9 +24,9 @@ script/source = "extends Label
 
 const Debug = preload(\"res://scripts/debug/Debug.gd\")
 
-const ERROR = preload(\"res://textures/debug/error.png\")
-const WARNING = preload(\"res://textures/debug/warning.png\")
-const INFO = preload(\"res://textures/debug/info.png\")
+const ERROR = preload(\"res://textures/_debug/error.png\")
+const WARNING = preload(\"res://textures/_debug/warning.png\")
+const INFO = preload(\"res://textures/_debug/info.png\")
 
 @onready var icon = $\"../DebugMessageIcon\"
 
