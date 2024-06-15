@@ -37,7 +37,7 @@ func _ready() -> void:
 	angle_y_max = deg_to_rad(angle_y_max)
 	
 	self.scale = Vector2(0.5, 0.5)
-	#collision_shape.set_deferred("disabled", true)
+	# collision_shape.set_deferred("disabled", true)
 
 func _process(delta: float) -> void:
 	rotate_velocity(delta)
@@ -76,7 +76,7 @@ func follow_mouse(delta: float) -> void:
 	if not following_mouse: return
 	
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	global_position = lerp(position, (mouse_pos - (size/2.5)), 0.1)#SESSO AAAAHHHHH SESSO
+	global_position = lerp(position, (mouse_pos - (size/2.5)), 0.1)
 
 func handle_mouse_click(event: InputEvent) -> void:
 	if not event is InputEventMouseButton: return

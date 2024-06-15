@@ -1,5 +1,5 @@
 extends Resource
-class_name Card
+class_name CardData
 
 enum CARD_TYPES { T, TS, S }
 

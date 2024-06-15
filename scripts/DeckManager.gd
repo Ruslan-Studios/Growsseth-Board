@@ -3,12 +3,12 @@ class_name DeckManager
 
 signal card_drawn
 
-@export var ric_cards: Array[Card]
-@export var ego_cards: Array[Card]
-@export var pre_cards: Array[Card]
-@export var tol_cards: Array[Card]
-@export var net_cards: Array[Card]
-@export var end_cards: Array[Card]
+@export var ric_cards: Array[CardData]
+@export var ego_cards: Array[CardData]
+@export var pre_cards: Array[CardData]
+@export var tol_cards: Array[CardData]
+@export var net_cards: Array[CardData]
+@export var end_cards: Array[CardData]
 
 var RIC_DECK: Deck = Deck.new(Deck.DECK_TYPES.RIC, ric_cards)
 var EGO_DECK: Deck = Deck.new(Deck.DECK_TYPES.EGO, ego_cards)

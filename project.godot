@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameIntegrityChecker="*res://scenes/components/GameIntegrityChecker.tscn"
 PlayerPrefs="*res://addons/PlayerPrefs/PlayerPrefs.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DebugConsole="*res://scenes/debug/DebugConsole.tscn"
@@ -66,6 +67,7 @@ console_autocomplete={
 
 textures/canvas_textures/default_texture_filter=2
 textures/default_filters/anisotropic_filtering_level=4
+environment/defaults/default_clear_color=Color(0.0962047, 0.0962048, 0.0962047, 1)
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/screen_space_aa=1

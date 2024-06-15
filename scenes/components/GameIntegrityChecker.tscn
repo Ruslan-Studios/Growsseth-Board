@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy3qre5ndkca8"]
+
+[ext_resource type="Script" path="res://scripts/CheckGameIntegrity.gd" id="1_bxdry"]
+
+[node name="CheckGameIntegrity" type="Node"]
+script = ExtResource("1_bxdry")

@@ -3,7 +3,7 @@ class_name Player
 
 var user: User
 @export var faction: Faction.FACTION_TYPES
-var cards: Array[Card] = []
+var cards: Array[CardData] = []
 var inventory: Array = []
 
 const MAX_HP: int = 20
