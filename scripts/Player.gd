@@ -3,7 +3,6 @@ class_name Player
 
 var user: User
 @export var faction: Faction.FACTION_TYPES
-var cards: Array[CardData] = []
 var inventory: Array = []
 
 const MAX_HP: int = 20
@@ -44,7 +43,7 @@ func end_turn():
 	turn_ended.emit(faction)
 
 func on_end_turn_btn_pressed():
-	print("Player imput: Fine turno")
+	print("Player input: Fine turno")
 	end_turn()
 
 func _on_timer_timeout():

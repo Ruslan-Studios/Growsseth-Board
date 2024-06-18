@@ -1,12 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj8km4qbh0ed1"]
+[gd_scene load_steps=3 format=3 uid="uid://dj8km4qbh0ed1"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_j5jld"]
+[ext_resource type="Script" path="res://scripts/Hand.gd" id="2_ycw5i"]
 
-[node name="Player" type="Node"]
+[node name="Player" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 script = ExtResource("1_j5jld")
+
+[node name="Hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+script = ExtResource("2_ycw5i")
+
+[node name="PlayerCam" type="Camera3D" parent="."]
+unique_name_in_owner = true
 
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
+[node name="AddCardBtn" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -675.0
+offset_top = -15.5
+offset_right = -532.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Add card"
+
+[node name="RemoveCardBtn" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -675.0
+offset_top = 35.0
+offset_right = -532.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Remove card"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 9.37
+omni_range = 29.3939
+
 [connection signal="timeout" from="TurnTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="AddCardBtn" to="Hand" method="add_card"]
+[connection signal="pressed" from="RemoveCardBtn" to="Hand" method="remove_card"]

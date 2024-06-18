@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxf6uqdxexnih"]
+
+[ext_resource type="Script" path="res://scripts/CameraContainer.gd" id="1_i4d4r"]
+[ext_resource type="Script" path="res://scripts/MapCamera.gd" id="2_juvvn"]
+
+[node name="OrbitCam" type="Node3D"]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+visible = false
+script = ExtResource("1_i4d4r")
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 5)
+visible = false
+current = true
+script = ExtResource("2_juvvn")
+
+[node name="Raycast" type="RayCast3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 5, 5)
+visible = false
+target_position = Vector3(0, -50, 0)

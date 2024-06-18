@@ -1,9 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7iyxq1c2666p"]
+[gd_scene load_steps=13 format=3 uid="uid://b7iyxq1c2666p"]
 
 [ext_resource type="Script" path="res://scripts/Card3D.gd" id="1_gogr0"]
 [ext_resource type="ArrayMesh" uid="uid://co1mdye7r7hq8" path="res://models/cards/card.obj" id="1_n6cit"]
+[ext_resource type="Resource" uid="uid://bslee4q5m7bsw" path="res://cards/ego/0_lionel.tres" id="2_jf1lp"]
 [ext_resource type="Texture2D" uid="uid://4k5hyyeqvh7" path="res://textures/cards/layout/layout_default.png" id="3_8enkm"]
 [ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="5_xble4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fpfoi"]
+viewport_path = NodePath("CardModel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1qea"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_fpfoi")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pqss1"]
 load_path = "res://.godot/imported/CylindricalVillager.png-1087aabf0a90fa322d30abb1b15ef077.ctex"
@@ -26,21 +34,24 @@ spacing_top = 3
 
 [node name="Card3D" type="Node3D"]
 script = ExtResource("1_gogr0")
+card_data = ExtResource("2_jf1lp")
 
 [node name="CardModel" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_n6cit")
+surface_material_override/2 = SubResource("StandardMaterial3D_t1qea")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-current = true
+[node name="SubViewport" type="SubViewport" parent="CardModel"]
+transparent_bg = true
+scaling_3d_mode = 1
+size = Vector2i(596, 834)
 
-[node name="CardTexture" type="Control" parent="."]
+[node name="CardTexture" type="Control" parent="CardModel/SubViewport"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 596.0
 offset_bottom = 834.0
 
-[node name="Artwork" type="TextureRect" parent="CardTexture"]
+[node name="Artwork" type="TextureRect" parent="CardModel/SubViewport/CardTexture"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 18.0
@@ -50,7 +61,7 @@ offset_bottom = 492.0
 texture = SubResource("CompressedTexture2D_pqss1")
 expand_mode = 1
 
-[node name="Layout" type="TextureRect" parent="CardTexture"]
+[node name="Layout" type="TextureRect" parent="CardModel/SubViewport/CardTexture"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -60,18 +71,19 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_8enkm")
 
-[node name="Name" type="RichTextLabel" parent="CardTexture"]
+[node name="Name" type="RichTextLabel" parent="CardModel/SubViewport/CardTexture"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 38.0
-offset_top = 36.0
+offset_top = 30.0
 offset_right = 498.0
-offset_bottom = 85.0
+offset_bottom = 79.0001
 theme_override_fonts/normal_font = SubResource("FontVariation_twvrs")
 theme_override_font_sizes/normal_font_size = 26
 text = "Cylindrical Villager"
+scroll_active = false
 
-[node name="Type" type="RichTextLabel" parent="CardTexture"]
+[node name="Type" type="RichTextLabel" parent="CardModel/SubViewport/CardTexture"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -87,7 +99,7 @@ theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "[center]TS[/center]"
 
-[node name="Description" type="RichTextLabel" parent="CardTexture"]
+[node name="Description" type="RichTextLabel" parent="CardModel/SubViewport/CardTexture"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -107,7 +119,7 @@ bbcode_enabled = true
 text = "[fill]Lorem ipsum dolor sit Cydo, consectetur adipiscing Efisio. Nunc in libero sollicitudin, Nicolaos augue ut, bibendum Palle. Maecenas a augue in ipsum Lionel mattis sed sed lacus. Nunc eget elementum LaStringa, eget semper sem. Donec Ricky feugiat massa. Nulla id nisl et lacus Simoner volutpat. Maecenas cursus[/fill]"
 scroll_active = false
 
-[node name="Lore" type="RichTextLabel" parent="CardTexture"]
+[node name="Lore" type="RichTextLabel" parent="CardModel/SubViewport/CardTexture"]
 unique_name_in_owner = true
 modulate = Color(0.74978, 0.74978, 0.74978, 1)
 layout_mode = 1
