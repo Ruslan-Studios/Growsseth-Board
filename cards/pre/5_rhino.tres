@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://nojjtp34k32o"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://nojjtp34k32o"]
 
 [ext_resource type="Script" path="res://scripts/CardData.gd" id="1_2gvn3"]
+[ext_resource type="Texture2D" uid="uid://c2yik53sforp3" path="res://textures/cards/artwork/pre/Rhino.jpg" id="1_s056r"]
 
 [resource]
 script = ExtResource("1_2gvn3")
@@ -10,3 +11,4 @@ card_name = "RHINO"
 card_type = 1
 lore = "Il più possente degli arieti."
 description = "Distruggi un ACCAMPAMENTO nemico, situato nello stesso QUADRANTE in cui ti trovi, senza doverlo attaccare direttamente e knockbacka l’avversario attaccato di 2 TILE, ovunque il possessore e l’avversario siano sulla mappa."
+artwork = ExtResource("1_s056r")

@@ -10,6 +10,9 @@ var spread_curve: Curve = preload("res://scenes/components/card_spread_curve.tre
 var height_curve: Curve = preload("res://scenes/components/card_height_curve.tres")
 var rotation_curve: Curve = preload("res://scenes/components/card_rotation_curve.tres")
 
+func _ready():
+	reorder_cards()
+
 func add_card():
 	var card = CARD_3D.instantiate()
 	add_child(card)

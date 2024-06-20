@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7iyxq1c2666p"]
+[gd_scene load_steps=14 format=3 uid="uid://b7iyxq1c2666p"]
 
 [ext_resource type="Script" path="res://scripts/Card3D.gd" id="1_gogr0"]
 [ext_resource type="ArrayMesh" uid="uid://co1mdye7r7hq8" path="res://models/cards/card.obj" id="1_n6cit"]
-[ext_resource type="Resource" uid="uid://bslee4q5m7bsw" path="res://cards/ego/0_lionel.tres" id="2_jf1lp"]
+[ext_resource type="Resource" uid="uid://nojjtp34k32o" path="res://cards/pre/5_rhino.tres" id="2_6v17r"]
 [ext_resource type="Texture2D" uid="uid://4k5hyyeqvh7" path="res://textures/cards/layout/layout_default.png" id="3_8enkm"]
 [ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="5_xble4"]
 
@@ -32,9 +32,12 @@ base_font = ExtResource("5_xble4")
 variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
 spacing_top = 3
 
-[node name="Card3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rvf1f"]
+size = Vector3(3.6, 5, 0.015)
+
+[node name="Card3D" type="StaticBody3D"]
 script = ExtResource("1_gogr0")
-card_data = ExtResource("2_jf1lp")
+card_data = ExtResource("2_6v17r")
 
 [node name="CardModel" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_n6cit")
@@ -139,3 +142,6 @@ theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "[center]Lorem ipsum dolor sit Cydo, consectetur adipiscing Efisio. Nunc in libero sollicitudin, Nicolaos augue ut, bibendum Palle. Maecenas a augue in ipsum Lionel mattis sed sed[/center]"
 scroll_active = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rvf1f")

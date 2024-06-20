@@ -1,0 +1,235 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqcb6p27g73x2"]
+
+[ext_resource type="Script" path="res://scripts/CardInfoScreen.gd" id="1_4c7f6"]
+[ext_resource type="Texture2D" uid="uid://4k5hyyeqvh7" path="res://textures/cards/layout/layout_default.png" id="1_7ne10"]
+[ext_resource type="Shader" path="res://shaders/screen_blur.gdshader" id="1_85kwd"]
+[ext_resource type="FontFile" uid="uid://l8bn36t7fnk2" path="res://fonts/Minecraft.ttf" id="2_eskot"]
+[ext_resource type="Script" path="res://scripts/FSArtworkScreen.gd" id="5_cuxld"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lo3fr"]
+shader = ExtResource("1_85kwd")
+shader_parameter/blur = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvfpc"]
+load_path = "res://.godot/imported/CylindricalVillager.png-1087aabf0a90fa322d30abb1b15ef077.ctex"
+
+[sub_resource type="FontVariation" id="FontVariation_can7j"]
+base_font = ExtResource("2_eskot")
+spacing_top = 15
+
+[sub_resource type="FontVariation" id="FontVariation_3vcfx"]
+base_font = ExtResource("2_eskot")
+
+[sub_resource type="FontVariation" id="FontVariation_5bpmn"]
+base_font = ExtResource("2_eskot")
+spacing_top = 3
+
+[sub_resource type="FontVariation" id="FontVariation_ja0lo"]
+base_font = ExtResource("2_eskot")
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+spacing_top = 3
+
+[sub_resource type="FontVariation" id="FontVariation_543uw"]
+base_font = ExtResource("2_eskot")
+
+[node name="CardInfoScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4c7f6")
+
+[node name="ScreenBlur" type="Panel" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_lo3fr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ArtworkBtn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -117.0
+offset_right = 96.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_eskot")
+theme_override_font_sizes/font_size = 32
+text = "Full Artwork"
+icon_alignment = 1
+
+[node name="Card" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -452.0
+offset_right = 298.0
+offset_bottom = 382.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Artwork" type="TextureRect" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 102.0
+offset_right = 577.0
+offset_bottom = 492.0
+texture = SubResource("CompressedTexture2D_xvfpc")
+expand_mode = 1
+
+[node name="Layout" type="TextureRect" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7ne10")
+
+[node name="Name" type="RichTextLabel" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 38.0
+offset_top = 30.0
+offset_right = 498.0
+offset_bottom = 79.0001
+theme_override_fonts/normal_font = SubResource("FontVariation_can7j")
+theme_override_font_sizes/normal_font_size = 26
+text = "Cylindrical Villager"
+scroll_active = false
+
+[node name="Type" type="RichTextLabel" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_top = 53.5
+offset_right = -43.0
+offset_bottom = 72.5
+grow_horizontal = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_3vcfx")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]TS[/center]"
+
+[node name="Description" type="RichTextLabel" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -245.0
+offset_top = -296.0
+offset_right = 245.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_5bpmn")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[fill]Lorem ipsum dolor sit Cydo, consectetur adipiscing Efisio. Nunc in libero sollicitudin, Nicolaos augue ut, bibendum Palle. Maecenas a augue in ipsum Lionel mattis sed sed lacus. Nunc eget elementum LaStringa, eget semper sem. Donec Ricky feugiat massa. Nulla id nisl et lacus Simoner volutpat. Maecenas cursus[/fill]"
+scroll_active = false
+
+[node name="Lore" type="RichTextLabel" parent="Card"]
+unique_name_in_owner = true
+modulate = Color(0.74978, 0.74978, 0.74978, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -253.0
+offset_top = -118.0
+offset_right = 253.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = SubResource("FontVariation_ja0lo")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]Lorem ipsum dolor sit Cydo, consectetur adipiscing Efisio. Nunc in libero sollicitudin, Nicolaos augue ut, bibendum Palle. Maecenas a augue in ipsum Lionel mattis sed sed[/center]"
+scroll_active = false
+
+[node name="FSArtworkScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("5_cuxld")
+
+[node name="Control" type="Control" parent="FSArtworkScreen"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="FSArtwork" type="TextureRect" parent="FSArtworkScreen/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.5
+offset_top = -195.0
+offset_right = 279.5
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(279, 195)
+texture = SubResource("CompressedTexture2D_xvfpc")
+expand_mode = 1
+
+[node name="Authors" type="RichTextLabel" parent="FSArtworkScreen"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -109.0
+offset_right = 540.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_fonts/normal_font = SubResource("FontVariation_543uw")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Artwork by: NoelEm[/center]"
+
+[connection signal="pressed" from="ArtworkBtn" to="." method="_on_artwork_btn_pressed"]
+[connection signal="fs_artwork_screen_exited" from="FSArtworkScreen" to="." method="enable_input_process"]

@@ -25,14 +25,11 @@ func _ready():
 	#tile_x = 
 	#tile_y = 
 
-func _process(delta):
-	pass
-
 # Connessa al signal next_player_turn in MatchManager
 func on_next_turn(faction: Faction.FACTION_TYPES):
 	if faction == self.faction:
 		isMyTurn = true
-		print("Turno di " + str(faction))
+		print("Turno di Player " + str(faction))
 		turn_timer.start()
 		print("Turn timer start")
 	else:

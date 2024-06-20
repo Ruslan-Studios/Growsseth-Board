@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://de1i82rqxpbgs"]
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://de1i82rqxpbgs"]
 
 [ext_resource type="Script" path="res://scripts/CardData.gd" id="1_8xonp"]
 
@@ -8,5 +8,5 @@ deck_type = 0
 id = 0
 card_name = "LETTO D’EMERGENZA"
 card_type = 1
-lore = "in ogni kit di un esploratore ci deve essere un letto extra"
+lore = "In ogni kit di un esploratore ci deve essere un letto extra."
 description = "Se di notte non vuoi affrontare SFIDA NOTTE, SCARTA questa CARTA, non tiri il dado e termini immediatamente il tuo TURNO."

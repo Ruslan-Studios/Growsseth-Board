@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj8km4qbh0ed1"]
+[gd_scene load_steps=7 format=3 uid="uid://dj8km4qbh0ed1"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_j5jld"]
 [ext_resource type="Script" path="res://scripts/Hand.gd" id="2_ycw5i"]
+[ext_resource type="PackedScene" uid="uid://b7iyxq1c2666p" path="res://scenes/components/Card3D.tscn" id="3_0oadq"]
 [ext_resource type="Script" path="res://scripts/PlayerCam.gd" id="3_alr14"]
+[ext_resource type="Resource" uid="uid://b1a56mayipkyr" path="res://cards/pre/1_balestra.tres" id="4_c3qsu"]
+[ext_resource type="Resource" uid="uid://bk8ghms0vbsja" path="res://cards/pre/4_stendardo.tres" id="5_5qocq"]
 
 [node name="Player" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
@@ -12,6 +15,14 @@ script = ExtResource("1_j5jld")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 script = ExtResource("2_ycw5i")
+
+[node name="Card3D" parent="Hand" instance=ExtResource("3_0oadq")]
+card_data = ExtResource("4_c3qsu")
+
+[node name="Card3D2" parent="Hand" instance=ExtResource("3_0oadq")]
+
+[node name="Card3D3" parent="Hand" instance=ExtResource("3_0oadq")]
+card_data = ExtResource("5_5qocq")
 
 [node name="PlayerCam" type="Camera3D" parent="."]
 unique_name_in_owner = true

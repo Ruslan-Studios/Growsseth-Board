@@ -1,4 +1,6 @@
-class_name Card3D extends Node3D
+extends Control
+
+signal card_info_screen_exited
 
 @export var card_data: CardData
 
@@ -9,7 +11,7 @@ class_name Card3D extends Node3D
 @onready var description = %Description
 @onready var lore = %Lore
 
-# Layout e back
+# Layout
 const LAYOUT_RIC = preload("res://textures/cards/layout/layout_default.png")
 const LAYOUT_EGO = preload("res://textures/cards/layout/layout_default.png")
 const LAYOUT_PRE = preload("res://textures/cards/layout/layout_default.png")
@@ -18,33 +20,27 @@ const LAYOUT_NET = preload("res://textures/cards/layout/layout_default.png")
 const LAYOUT_END = preload("res://textures/cards/layout/layout_default.png")
 const LAYOUT_DEFAULT = preload("res://textures/cards/layout/layout_default.png")
 
-const BACK_RIC = preload("res://textures/cards/layout/layout_nether.png")
-const BACK_EGO = preload("res://textures/cards/layout/layout_nether.png")
-const BACK_PRE = preload("res://textures/cards/layout/layout_nether.png")
-const BACK_TOL = preload("res://textures/cards/layout/layout_nether.png")
-const BACK_NET = preload("res://textures/cards/layout/layout_nether.png")
-const BACK_END = preload("res://textures/cards/layout/layout_nether.png")
+# Artwork
+@onready var artwork_btn = %ArtworkBtn
+@onready var fs_artwork_screen = %FSArtworkScreen
+@onready var artwork_fs = %FSArtwork
 
-# Animazioni
-const ANIM_SPEED = 9
-var target_position: Transform3D
-var target_rotation: Vector3
-
-# Card Info
-const CARD_INFO_SCREEN = preload("res://scenes/components/CardInfoScreen.tscn")
+# Camera
+@onready var player_cam = %PlayerCam
 
 func _ready():
 	if card_data == null:
 		return
 	card_setup()
 
-func _process(delta):
-	transform.origin = lerp(transform.origin, target_position.origin, ANIM_SPEED * delta)
-	rotation.z = lerp(rotation.z, target_rotation.z, ANIM_SPEED * delta)
+func _input(event):
+	if event is InputEventMouseButton and event.is_pressed() and fs_artwork_screen.visible == false:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			card_info_screen_exited.emit()
+			queue_free()
 
 func card_setup():
 	# Layout - DECK_TYPES { RIC, EGO, PRE, TOL, NET, END }
-	# TO-DO: Modificare anche i back appena disponibili
 	match card_data.deck_type:
 		Deck.DECK_TYPES.RIC:
 			layout.texture = LAYOUT_RIC
@@ -63,7 +59,9 @@ func card_setup():
 	
 	# Artwork
 	artwork.texture = card_data.artwork
-
+	if artwork.texture != null:
+		artwork_fs.texture = artwork.texture
+	
 	# Card type - CARD_TYPES { T, TS, S }
 	match card_data.card_type:
 		CardData.CARD_TYPES.T:
@@ -82,7 +80,10 @@ func card_setup():
 	# Lore
 	lore.text = "[center]" + card_data.lore + "[/center]"
 
-func show_card_info():
-	var card_info = CARD_INFO_SCREEN.instantiate()
-	card_info.card_data = self.card_data
-	add_child(card_info)
+func _on_artwork_btn_pressed():
+	set_process_input(false)
+	artwork_btn.visible = false
+	fs_artwork_screen.visible = true
+
+func enable_input_process():
+	set_process_input(true)
