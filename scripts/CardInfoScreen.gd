@@ -25,9 +25,6 @@ const LAYOUT_DEFAULT = preload("res://textures/cards/layout/layout_default.png")
 @onready var fs_artwork_screen = %FSArtworkScreen
 @onready var artwork_fs = %FSArtwork
 
-# Camera
-@onready var player_cam = %PlayerCam
-
 func _ready():
 	if card_data == null:
 		return

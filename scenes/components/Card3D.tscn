@@ -145,3 +145,6 @@ scroll_active = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_rvf1f")
+
+[connection signal="mouse_entered" from="." to="." method="highlight_card"]
+[connection signal="mouse_exited" from="." to="." method="unhighlight_card"]

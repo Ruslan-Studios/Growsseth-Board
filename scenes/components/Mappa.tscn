@@ -1,26 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ju02qygl7u1w"]
+[gd_scene load_steps=3 format=3 uid="uid://ju02qygl7u1w"]
 
 [ext_resource type="Script" path="res://scripts/MapGenerator.gd" id="1_ub1c4"]
-[ext_resource type="Script" path="res://scripts/CameraContainer.gd" id="2_dp6oq"]
-[ext_resource type="Script" path="res://scripts/MapCamera.gd" id="2_iew3l"]
+[ext_resource type="PackedScene" uid="uid://cxf6uqdxexnih" path="res://scenes/components/OrbitCam.tscn" id="2_vq06m"]
 
 [node name="Mappa" type="Node3D"]
 
-[node name="MapGenerator" type="Node" parent="."]
+[node name="MapGenerator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
 script = ExtResource("1_ub1c4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.502447, 0.864608, 0, -0.864608, 0.502447, 0, 0, 0)
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
-script = ExtResource("2_dp6oq")
-
-[node name="MyCam" type="Camera3D" parent="Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 15, 15)
-current = true
-script = ExtResource("2_iew3l")
-
-[node name="Raycast" type="RayCast3D" parent="Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 15, 15)
-target_position = Vector3(0, -50, 0)
+[node name="OrbitCam" parent="." instance=ExtResource("2_vq06m")]

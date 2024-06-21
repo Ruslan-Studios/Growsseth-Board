@@ -66,17 +66,15 @@ func _input(event):
 # %MessagesList
 @onready var messages_list = %MessagesList
 
-# Message Output
+################ Message Output ################
 
-## Connettere la seguente funzione a qualsiasi signal di tipo \"debug_message_sent\"
-## I signal di tipo \"debug_msg_sent\" hanno due argomenti:
+## La funzione prevede due argomenti:
 ## - message: il messaggio da visualizzare
 ## - type: uno dei tipi definiti nell'enum in Debug.gd, influenza il colore e l'icona
 
-func _on_message_received(message: String, type: DebugLib.MESSAGE_TYPES):
+func send_message(message: String, type: DebugLib.MESSAGE_TYPES):
 	if message == \"\":
-		print(\"Messaggio di debug vuoto.\")
-		return
+		message = \"Messaggio di debug vuoto.\"
 	
 	# Aggiungi il messaggio ricevuto al file di log
 	var formatted_message: String
@@ -104,7 +102,8 @@ func _on_message_received(message: String, type: DebugLib.MESSAGE_TYPES):
 	debug_message.get_child(0).get_child(1).msg_type = type
 	messages_list.add_child(debug_message)
 
-# Command Input
+################ Command Input ################
+
 func _on_command_submitted(command):
 	var error = expression.parse(command)
 	if error != OK:
@@ -156,14 +155,12 @@ func autocomplete() -> void:
 
 # Comandi di debug
 
-signal debug_msg_sent
-
-func debug_msg(msg: String, type: int = 0):
+func debug_msg(msg: String, type: Debug.MESSAGE_TYPES):
 	if msg != \"\":
 		type = clamp(type, 0, 2)
-		debug_msg_sent.emit(msg, type)
+		send_message(msg, type)
 	else:
-		debug_msg_sent.emit(\"Debug message is empty!\", 2)
+		send_message(\"Messaggio di debug vuoto.\", type)
 
 func reload():
 	get_tree().reload_current_scene()
@@ -226,6 +223,7 @@ layout_mode = 2
 placeholder_text = "Console"
 
 [node name="ConsoleLog" type="ColorRect" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(1650, 500)
 layout_mode = 2
 color = Color(0.176471, 0.176471, 0.176471, 0.568627)
@@ -247,7 +245,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture_normal = ExtResource("3_snjjp")
+texture_normal = ExtResource("2_jle38")
 ignore_texture_size = true
 stretch_mode = 0
 script = SubResource("GDScript_x65xp")

@@ -30,6 +30,12 @@ const ANIM_SPEED = 9
 var target_position: Transform3D
 var target_rotation: Vector3
 
+var isHighlighted: bool = false
+@export var highlight_offset: float = 0.8
+
+# Card unhighlight
+var prev_rot: Vector3
+
 # Card Info
 const CARD_INFO_SCREEN = preload("res://scenes/components/CardInfoScreen.tscn")
 
@@ -86,3 +92,19 @@ func show_card_info():
 	var card_info = CARD_INFO_SCREEN.instantiate()
 	card_info.card_data = self.card_data
 	add_child(card_info)
+
+# Funzione chiamata dalla cam
+func highlight_card():
+	isHighlighted = true
+	target_position.origin.y += highlight_offset
+	target_position.origin.z += highlight_offset
+	prev_rot = target_rotation
+	target_rotation.z = 0
+	# Eventuali effetti visivi
+
+func unhighlight_card():
+	isHighlighted = false
+	target_position.origin.y -= highlight_offset
+	target_position.origin.z -= highlight_offset
+	target_rotation = prev_rot
+	# Eventuali effetti visivi

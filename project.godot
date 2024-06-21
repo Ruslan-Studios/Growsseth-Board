@@ -18,10 +18,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameIntegrityChecker="*res://scenes/components/GameIntegrityChecker.tscn"
+GameIntegrityChecker="res://scenes/components/GameIntegrityChecker.tscn"
 PlayerPrefs="*res://addons/PlayerPrefs/PlayerPrefs.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
-DebugConsole="res://scenes/debug/DebugConsole.tscn"
+DebugConsole="*res://scenes/debug/DebugConsole.tscn"
 
 [display]
 

@@ -54,6 +54,3 @@ func reorder_cards():
 		
 		card.target_position = new_pos
 		card.target_rotation = new_rot
-
-func _process(delta):
-	pass
