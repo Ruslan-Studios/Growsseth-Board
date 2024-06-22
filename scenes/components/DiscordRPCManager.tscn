@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://boxrcthsec37h"]
+
+[ext_resource type="Script" path="res://scripts/DiscordRPCManager.gd" id="1_a5phd"]
+
+[node name="DiscordRPCManager" type="Node"]
+script = ExtResource("1_a5phd")
